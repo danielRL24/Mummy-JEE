@@ -7,7 +7,15 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <!-- <h:outputStylesheet name="css/jsfcrud.css"/> -->
+        
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        
+        <!--Import materialize.css-->
+        <h:outputStylesheet library="css" name="materialize.css"/>    
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
 
     <h:body>
@@ -17,6 +25,10 @@
         <p>
             <ui:insert name="body">Default Body</ui:insert>
         </p>
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h:outputScript library="js" name="materialize.js" />
     </h:body>
 
 </html>
