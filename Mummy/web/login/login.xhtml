@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>#{bundle.LoginTitle}</title>
+        <!--<h:outputStylesheet library="css" name="jsfcrud.css"/>-->
+        
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+       
+        <!--Import materialize.css-->
+        <h:outputStylesheet library="css" name="materialize.css"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <!-- Import custom css -->       
+        <h:outputStylesheet library="css" name="loginpage.css"/>
+    </h:head>
+
+    <h:body>
+        <div id="login-page" class="row">            
+            <div class="col s12 z-depth-6 card-panel">
+                <form class="login-form" action="j_security_check" method="post">
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login"/>
+                            <p class="center login-form-text">#{bundle.LoginTitle}</p>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <input class="validate" id="email" type="email" name="j_username"/>
+                            <label for="email">#{bundle.LoginUseremail}</label>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" name="j_password"/>
+                            <label for="password">#{bundle.LoginPassword}</label>
+                        </div>
+                    </div>
+                    <div class="row">          
+                        <div class="input-field col s12 m12 l12  login-text">
+                            <input type="checkbox" id="remember-me" />
+                            <label for="remember-me">#{bundle.LoginRememberMe}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="submit" name="#{bundle.LoginConnectionLink}" class="btn waves-effect waves-light col s12"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 m6 l6">
+                            <p class="margin medium-small"><a href="#">#{bundle.LoginRegisterNow}</a></p>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <p class="margin right-align medium-small"><!--<a href="forgot-password.html">Forgot password?</a>--></p>
+                        </div>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h:outputScript library="js" name="materialize.js" />
+    </h:body>
+</html>

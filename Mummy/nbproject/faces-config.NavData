@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="participant/List.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="priority/Edit.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="admin/index.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="task/List.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="user/Edit.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="priority/Create.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="priority/View.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="login/login.jsp" x="150" y="750" zoom="true"/>
+        <Node id="participant/View.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="template.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="participant/Edit.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="user/List.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="role/Edit.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="role/Create.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="user/Create.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="task/Edit.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="user/View.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="status/Edit.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="status/List.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="role/View.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="task/Create.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="status/View.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="priority/List.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="participant/Create.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="role/List.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="task/View.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="status/Create.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="login/loginerror.jsp" x="900" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <!--<h:outputStylesheet library="css" name="jsfcrud.css"/>-->
+        
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+       
+        <!--Import materialize.css-->
+        <h:outputStylesheet library="css" name="materialize.css"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:link outcome="/participant/List" value="Show All Participant Items"/>
+        <br />
+        <h:link outcome="/priority/List" value="Show All Priority Items"/>
+        <br />
+        <h:link outcome="/role/List" value="Show All Role Items"/>
+        <br />
+        <h:link outcome="/status/List" value="Show All Status Items"/>
+        <br />
+        <h:link outcome="/task/List" value="Show All Task Items"/>
+        <br />
+        <h:link outcome="/user/List" value="Show All User Items"/>
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h:outputScript library="js" name="materialize.js" />
+    </h:body>
+</html>
+
