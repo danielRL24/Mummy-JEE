@@ -28,6 +28,13 @@
             <description/>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>OtherResource</web-resource-name>
+            <description/>
+            <url-pattern>/participant/*</url-pattern>
+            <url-pattern>/task/*</url-pattern>
+            <url-pattern>/user/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>Admin</role-name>

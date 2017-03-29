@@ -23,7 +23,7 @@
 
     <h:body>
         <div id="login-page" class="row">            
-            <div class="col s12 z-depth-6 card-panel">
+            <div class="col s12 z-depth-6 card-panel m12">
                 <form class="login-form" action="j_security_check" method="post">
                     <div class="row">
                         <div class="input-field col s12 center">
@@ -43,15 +43,9 @@
                             <label for="password">#{bundle.LoginPassword}</label>
                         </div>
                     </div>
-                    <div class="row">          
-                        <div class="input-field col s12 m12 l12  login-text">
-                            <input type="checkbox" id="remember-me" />
-                            <label for="remember-me">#{bundle.LoginRememberMe}</label>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="submit" name="#{bundle.LoginConnectionLink}" class="btn waves-effect waves-light col s12"/>
+                            <input type="submit" value="#{bundle.LoginConnectionLink}" class="btn waves-effect waves-light col s12"/>
                         </div>
                     </div>
                     <div class="row">

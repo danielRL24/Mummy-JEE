@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/admin/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTaskTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{taskController.selected.id}" title="#{bundle.CreateTaskTitle_id}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{taskController.selected.title}" title="#{bundle.CreateTaskTitle_title}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{taskController.selected.description}" title="#{bundle.CreateTaskTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_begin}" for="begin" />
+                    <h:inputText id="begin" value="#{taskController.selected.begin}" title="#{bundle.CreateTaskTitle_begin}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_begin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_end}" for="end" />
+                    <h:inputText id="end" value="#{taskController.selected.end}" title="#{bundle.CreateTaskTitle_end}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_end}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_category}" for="category" />
+                    <h:inputText id="category" value="#{taskController.selected.category}" title="#{bundle.CreateTaskTitle_category}" />
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_progression}" for="progression" />
+                    <h:inputText id="progression" value="#{taskController.selected.progression}" title="#{bundle.CreateTaskTitle_progression}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_progression}"/>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkCreator}" for="fkCreator" />
+                    <h:selectOneMenu id="fkCreator" value="#{taskController.selected.fkCreator}" title="#{bundle.CreateTaskTitle_fkCreator}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkCreator}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkParent}" for="fkParent" />
+                    <h:selectOneMenu id="fkParent" value="#{taskController.selected.fkParent}" title="#{bundle.CreateTaskTitle_fkParent}" >
+                        <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkPriority}" for="fkPriority" />
+                    <h:selectOneMenu id="fkPriority" value="#{taskController.selected.fkPriority}" title="#{bundle.CreateTaskTitle_fkPriority}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkPriority}">
+                        <f:selectItems value="#{priorityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkStatus}" for="fkStatus" />
+                    <h:selectOneMenu id="fkStatus" value="#{taskController.selected.fkStatus}" title="#{bundle.CreateTaskTitle_fkStatus}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkStatus}">
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.CreateTaskShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTaskIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,12 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets - Admin Page
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/admin/template.xhtml">
+    <ui:define name="title">
+        <h:outputText value="Admin's Home"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <div class="section" id="index-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m9">
+                        <h1 class="header center-on-small-only">About</h1>
+                        <h4 class ="light red-text text-lighten-4 center-on-small-only">Learn about the Material Design and our Project Team.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </ui:define>
+    </ui:composition>
 </html>
 
