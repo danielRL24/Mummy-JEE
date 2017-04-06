@@ -33,7 +33,8 @@
             <description/>
             <url-pattern>/participant/*</url-pattern>
             <url-pattern>/task/*</url-pattern>
-            <url-pattern>/user/*</url-pattern>
+            <url-pattern>/user/View.xhtml</url-pattern>
+            <url-pattern>/user/Edit.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -47,7 +48,8 @@
             <description/>
             <url-pattern>/participant/*</url-pattern>
             <url-pattern>/task/*</url-pattern>
-            <url-pattern>/user/*</url-pattern>
+            <url-pattern>/user/View.xhtml</url-pattern>
+            <url-pattern>/user/Edit.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
