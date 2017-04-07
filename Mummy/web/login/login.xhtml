@@ -5,7 +5,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <title>#{bundle.LoginTitle}</title>
         <!--<h:outputStylesheet library="css" name="jsfcrud.css"/>-->
         
@@ -23,22 +25,24 @@
 
     <h:body>
         <div id="login-page" class="row">            
-            <div class="col s12 z-depth-6 card-panel m12">
+            <div class="col s12 z-depth-6 card-panel">
                 <form class="login-form" action="j_security_check" method="post">
                     <div class="row">
                         <div class="input-field col s12 center">
-                            <img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login"/>
+                            <h:link outcome="/index.xhtml"><img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login"/></h:link>
                             <p class="center login-form-text">#{bundle.LoginTitle}</p>
                         </div>
                     </div>
                     <div class="row margin">
                         <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
                             <input class="validate" id="email" type="email" name="j_username"/>
                             <label for="email">#{bundle.LoginUseremail}</label>
                         </div>
                     </div>
                     <div class="row margin">
                         <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
                             <input id="password" type="password" name="j_password"/>
                             <label for="password">#{bundle.LoginPassword}</label>
                         </div>

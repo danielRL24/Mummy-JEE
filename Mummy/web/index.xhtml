@@ -14,35 +14,9 @@
         <h:outputStylesheet library="css" name="materialize.css"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <style>
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-            }
-
-            main {
-                flex: 1 0 auto;
-            }
-
-            #index-banner {
-                background-image: url("./resources/imgs/home-bg.jpeg");
-                background-position-x: center;
-                background-position-y: 40%;
-                background-size: 100%;
-            }
-            
-            .btn-large {
-                margin: 5px;
-            }
-            
-            .icon-block {
-                padding: 0 15px;
-            }
-            .icon-block .material-icons {
-                font-size: inherit;
-            }
-        </style>
+        
+        <!-- Import custom css -->       
+        <h:outputStylesheet library="css" name="home.css"/>
     </h:head>
     <h:body>
         <!-- Dropdown Structure -->
@@ -121,7 +95,7 @@
                 <div class="row">
                   <div class="col s12 m4">
                     <div class="icon-block">
-                      <h2 class="center"><i class="material-icons">list</i></h2>
+                      <h2 class="center"><i class="material-icons">format_align_justify</i></h2>
                       <h5 class="center">Incredibile id ut in atque</h5>
 
                       <p class="light">Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret.</p>
@@ -139,7 +113,7 @@
 
                   <div class="col s12 m4">
                     <div class="icon-block">
-                      <h2 class="center"><i class="material-icons">library_books</i></h2>
+                      <h2 class="center"><i class="material-icons">format_align_left</i></h2>
                       <h5 class="center">Quoddam docens ne ingenii</h5>
 
                       <p class="light">Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur.</p>

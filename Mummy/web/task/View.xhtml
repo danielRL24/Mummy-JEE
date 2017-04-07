@@ -10,16 +10,72 @@
             <h:outputText value="#{bundle.ViewTaskTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{taskController.selected.title}</h1>
+            
+            <ul class="collection with-header z-depth-1"> 
+                <li class="collection-header">
+                    <p>#{taskController.selected.description}</p>
+                </li>
+                <li class="collection-item">
+                    <span class="title"><h:outputText value="#{bundle.ViewTaskTitle_creator}"/></span>
+                    <p><h:outputText value="#{taskController.selected.fkCreator.name}" /></p>
+                </li>
+                <li class="collection-item">
+                    <span class="title"><h:outputText value="#{bundle.ViewTaskTitle_begin}"/></span>
+                    <p>
+                        <h:outputText value="#{taskController.selected.begin}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                        </h:outputText>
+                    </p>
+                </li>
+                <li class="collection-item">
+                    <span class="title"><h:outputText value="#{bundle.ViewTaskTitle_end}"/></span>
+                    <p>
+                        <h:outputText value="#{taskController.selected.end}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                        </h:outputText>
+                    </p>
+                </li>
+                <li class="collection-item">
+                    <span class="title"><h:outputText value="#{bundle.ViewTaskTitle_progression}"/></span>
+                    <p><h:outputText value="#{taskController.selected.progression}" /> %</p>
+                </li>   
+            </ul>
+            
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">#{bundle.ViewTaskTitle_description}</span>
+                    <p>#{taskController.selected.description}</p>
+                </div>
+            </div>  
+            <div class="card">
+                <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a href="#test4">Test 1</a></li>
+                        <li class="tab"><a class="active" href="#test5">Test 2</a></li>
+                        <li class="tab"><a href="#test6">Test 3</a></li>
+                    </ul>
+                </div>  
+                <div class="card-content grey lighten-4">
+                    <div id="test4">Test 1</div>
+                    <div id="test5">Test 2</div>
+                    <div id="test6">Test 3</div>
+                </div>
+            </div>
+            
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+<!--                <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewTaskLabel_id}"/>
                     <h:outputText value="#{taskController.selected.id}" title="#{bundle.ViewTaskTitle_id}"/>
                     <h:outputText value="#{bundle.ViewTaskLabel_title}"/>
                     <h:outputText value="#{taskController.selected.title}" title="#{bundle.ViewTaskTitle_title}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_description}"/>
+                    <h:outputText value=""/>
                     <h:outputText value="#{taskController.selected.description}" title="#{bundle.ViewTaskTitle_description}"/>
                     <h:outputText value="#{bundle.ViewTaskLabel_begin}"/>
                     <h:outputText value="#{taskController.selected.begin}" title="#{bundle.ViewTaskTitle_begin}">
@@ -41,7 +97,7 @@
                     <h:outputText value="#{taskController.selected.fkPriority}" title="#{bundle.ViewTaskTitle_fkPriority}"/>
                     <h:outputText value="#{bundle.ViewTaskLabel_fkStatus}"/>
                     <h:outputText value="#{taskController.selected.fkStatus}" title="#{bundle.ViewTaskTitle_fkStatus}"/>
-                </h:panelGrid>
+                </h:panelGrid>-->
                 <br />
                 <h:commandLink action="#{taskController.destroyAndView}" value="#{bundle.ViewTaskDestroyLink}"/>
                 <br />
