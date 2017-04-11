@@ -10,30 +10,52 @@
             <h:outputText value="#{bundle.ViewPriorityTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.ViewPriorityTitle} : #{priorityController.selected.name}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewPriorityLabel_id}"/>
-                    <h:outputText value="#{priorityController.selected.id}" title="#{bundle.ViewPriorityTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewPriorityLabel_name}"/>
-                    <h:outputText value="#{priorityController.selected.name}" title="#{bundle.ViewPriorityTitle_name}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{priorityController.destroyAndView}" value="#{bundle.ViewPriorityDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPriorityEditLink}"/>
-                <br />
-                <h:commandLink action="#{priorityController.prepareCreate}" value="#{bundle.ViewPriorityCreateLink}" />
-                <br />
-                <h:commandLink action="#{priorityController.prepareList}" value="#{bundle.ViewPriorityShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPriorityIndexLink}"/>
-
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">#{bundle.ListTaskTitle}</span>
+                        <ul class="collection">
+                            <h:panelGroup rendered="${empty priorityController.selected.taskCollection}">
+                                <p class="collection-item">No Tasks !</p>
+                            </h:panelGroup>
+                            <ui:repeat value="#{priorityController.selected.taskCollection}" var="task">
+                                <li class="collection-item">
+                                    <span class="title"><h:outputText value="#{task.title}"/></span>
+                                    <p><h:outputText value="#{task.description}" class="grey-text"/></p>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </div>
             </h:form>
+            <h:form>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <h:commandLink action="#{priorityController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewPriorityCreateLink}">
+                                <i class="material-icons">add_circle_outline</i>
+                            </h:commandLink>
+                        </li> 
+                        <li>
+                            <h:commandLink action="#{priorityController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewPriorityDestroyLink}">
+                                <i class="material-icons">delete</i>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewPriorityEditLink}">
+                                <i class="material-icons">mode_edit</i>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </h:form> 
         </ui:define>
     </ui:composition>
 

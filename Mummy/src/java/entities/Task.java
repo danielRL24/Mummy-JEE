@@ -84,8 +84,6 @@ public class Task implements Serializable {
     private Status fkStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTask")
     private Collection<Participant> participantCollection;
-//    @ManyToOne
-//    private Collection<Task> subtaskCollection;
 
     public Task() {
     }
@@ -199,7 +197,6 @@ public class Task implements Serializable {
         this.fkStatus = fkStatus;
     }
 
-    @XmlTransient
     public Collection<Participant> getParticipantCollection() {
         return participantCollection;
     }
@@ -207,15 +204,6 @@ public class Task implements Serializable {
     public void setParticipantCollection(Collection<Participant> participantCollection) {
         this.participantCollection = participantCollection;
     }
-
-//    @XmlTransient
-//    public Collection<Task> getSubtaskCollection() {
-//        return subtaskCollection;
-//    }
-//    
-//    public void setSubtaskCollection (Collection<Task> subtaskCollection) {
-//        this.subtaskCollection = subtaskCollection;
-//    }
 
     @Override
     public int hashCode() {

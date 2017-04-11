@@ -14,29 +14,25 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUserLabel_id}"/>
-                    <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_name}"/>
-                    <h:outputText value="#{userController.selected.name}" title="#{bundle.ViewUserTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_email}"/>
-                    <h:outputText value="#{userController.selected.email}" title="#{bundle.ViewUserTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_pwd}"/>
-                    <h:outputText value="#{userController.selected.pwd}" title="#{bundle.ViewUserTitle_pwd}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{userController.destroyAndView}" value="#{bundle.ViewUserDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUserEditLink}"/>
-                <br />
-                <h:commandLink action="#{userController.prepareCreate}" value="#{bundle.ViewUserCreateLink}" />
-                <br />
-                <h:commandLink action="#{userController.prepareList}" value="#{bundle.ViewUserShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUserIndexLink}"/>
-
+                <h1>#{bundle.ViewUserTitle}</h1>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">#{userController.loggedUser.name}
+                                    <ui:debug hotkey="x" />
+                                    <span class="badge" data-badge-caption="Tasks">#{userController.loggedUser.taskCollection.size()}</span>
+                                </span>
+                                <p>#{userController.loggedUser.email}</p>
+                            </div>
+                            <div class="card-action">
+                                <h:link outcome="Edit" class="waves-effect waves-light" title="#{bundle.ViewUserEditLink}">
+                                    <i class="material-icons left">mode_edit</i>
+                                </h:link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

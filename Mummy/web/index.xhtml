@@ -1,72 +1,18 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>#{bundle.HomePage}| #{bundle.AppName}</title>
-        <!--<h:outputStylesheet library="css" name="jsfcrud.css"/>-->
-        
-        <!--Import Google Fonts -->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet"/>
-        
-        <!--Import materialize.css-->
-        <h:outputStylesheet library="css" name="materialize.css"/>
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
-        <!-- Import custom css -->       
-        <h:outputStylesheet library="css" name="home.css"/>
-    </h:head>
-    <h:body>
-        <!-- Dropdown Structure -->
-        <ul id="dropdownprofile" class="dropdown-content">
-            <li><a href="/user/View">#{bundle.MenuProfileLink}</a></li>
-            <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
-                <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
-            </h:panelGroup>
-            <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
-        </ul>
-        <!-- Navigation -->
-        <nav>
-            <div class="nav-wrapper">
-                <div class="container">
-                    <h:link outcome="/index.xhtml" value="#{bundle.AppName}" class="brand-logo"/>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    
-                    <h:panelGroup rendered="${not empty request.remoteUser}">
-                        <ul class="right hide-on-med-and-down">                                          
-                            <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>    
-                            <!-- Dropdown Trigger -->
-                            <li><a class="dropdown-button" href="#!" data-activates="dropdownprofile">${request.remoteUser}<i class="material-icons right">arrow_drop_down</i></a></li>
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">                     
-                            <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>                   
-                            <!-- Dropdown Trigger -->
-                            <li class="divider"></li>
-                            <li><a class="subheader">${request.remoteUser}</a></li>
-                            <li><a href="/user/View">#{bundle.MenuProfileLink}</a></li>
-                            <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
-                                <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
-                            </h:panelGroup>
-                            <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
-                        </ul>
-                    </h:panelGroup>                   
-                    <h:panelGroup rendered="${empty request.remoteUser}">
-                        <ul class="right hide-on-med-and-down">                                          
-                            <li><h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}"/></li>                   
-                            <li><h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" /></li>
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">                     
-                            <li><h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}"/></li>                   
-                            <li><h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" /></li>
-                        </ul>
-                    </h:panelGroup>
-                </div>
-            </div>
-        </nav>
-        <!-- Content -->
-        <main>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.HomePage}"></h:outputText>
+        </ui:define>
+        <ui:define name="style">
+            <h:outputStylesheet library="css" name="home.css"/>   
+        </ui:define>
+        <ui:define name="body">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
                     <br/><br/>
@@ -88,38 +34,38 @@
                 </div>
             </div>
             
-            <div class="container">
+            <div class="container grey lighten-4">
                 <div class="section">
 
-                <!--   Icon Section   -->
-                <div class="row">
-                  <div class="col s12 m4">
-                    <div class="icon-block">
-                      <h2 class="center"><i class="material-icons">format_align_justify</i></h2>
-                      <h5 class="center">Incredibile id ut in atque</h5>
+                    <!--   Icon Section   -->
+                    <div class="row">
+                      <div class="col s12 m4">
+                        <div class="icon-block">
+                          <h2 class="center"><i class="material-icons">format_align_justify</i></h2>
+                          <h5 class="center">Incredibile id ut in atque</h5>
 
-                      <p class="light">Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret.</p>
+                          <p class="light">Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret.</p>
+                        </div>
+                      </div>
+
+                      <div class="col s12 m4">
+                        <div class="icon-block">
+                          <h2 class="center"><i class="material-icons">group</i></h2>
+                          <h5 class="center">Ille Valerius Publicola humatur</h5>
+
+                          <p class="light">Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.</p>
+                        </div>
+                      </div>
+
+                      <div class="col s12 m4">
+                        <div class="icon-block">
+                          <h2 class="center"><i class="material-icons">format_align_left</i></h2>
+                          <h5 class="center">Quoddam docens ne ingenii</h5>
+
+                          <p class="light">Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur.</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  <div class="col s12 m4">
-                    <div class="icon-block">
-                      <h2 class="center"><i class="material-icons">group</i></h2>
-                      <h5 class="center">Ille Valerius Publicola humatur</h5>
-
-                      <p class="light">Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.</p>
-                    </div>
-                  </div>
-
-                  <div class="col s12 m4">
-                    <div class="icon-block">
-                      <h2 class="center"><i class="material-icons">format_align_left</i></h2>
-                      <h5 class="center">Quoddam docens ne ingenii</h5>
-
-                      <p class="light">Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur.</p>
-                    </div>
-                  </div>
-                </div>
 
                 </div>
                 <br/><br/>
@@ -128,22 +74,7 @@
 
                 </div> 
             </div>
-        </main>
-        <!-- Footer -->
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container row">
-                    <div class="col s6">By Groell S., Magnin L. and Rodrigues D.</div>
-                </div>
-            </div>
-        </footer>
-        
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <h:outputScript library="js" name="materialize.js" />
-        <script>
-            $(".button-collapse").sideNav();
-        </script>
-    </h:body>
+        </ui:define>
+    </ui:composition>
 </html>
 

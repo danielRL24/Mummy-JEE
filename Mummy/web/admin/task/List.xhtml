@@ -11,102 +11,108 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
+                <h1><h:outputText value="#{bundle.ListTaskTitle}"></h:outputText></h1>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{taskController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                    <h:outputText value="#{taskController.pagination.pageFirstItem + 1}..#{taskController.pagination.pageLastItem + 1}/#{taskController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{taskController.previous}" value="#{bundle.Previous} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_begin}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.begin}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_end}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.end}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_category}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.category}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_progression}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.progression}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkCreator}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkCreator}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkParent}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkParent}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkPriority}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkPriority}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkStatus}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkStatus}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
+                <div class="card">
+                    <div class="card-content">
+                        <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{taskController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
+                            <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_title}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.title}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_begin}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.begin}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_end}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.end}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_category}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.category}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_progression}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.progression} %"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_fkCreator}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.fkCreator.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_fkPriority}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.fkPriority.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_fkStatus}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.fkStatus.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListTaskTitle_action}"/>
+                                    </f:facet>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}" class="waves-effect waves-light btn">
+                                        <i class="material-icons left">open_in_new</i>
+                                    </h:commandLink>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}" class="waves-effect blue waves-light btn">
+                                        <i class="material-icons left">mode_edit</i>
+                                    </h:commandLink>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect red waves-light btn">
+                                        <i class="material-icons left">delete</i>
+                                    </h:commandLink>
+                                </h:column>
+                            </h:dataTable>
+                            <br/>
+                            <ul class="pagination">
+                                <h:panelGroup rendered="#{taskController.pagination.hasPreviousPage}">
+                                    <li class="waves-effect active"><h:commandLink action="#{taskController.previous}" value="#{bundle.Previous} #{taskController.pagination.pageSize}"/></li>
+                                </h:panelGroup>
+                                <li class="disabled"><a href="#!"><h:outputText value="#{taskController.pagination.pageFirstItem + 1}..#{taskController.pagination.pageLastItem + 1}/#{taskController.pagination.itemsCount}"/></a></li>
+                                <h:panelGroup rendered="#{taskController.pagination.hasNextPage}">
+                                    <li class="waves-effect active"><h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}"/></li>
+                                </h:panelGroup>
+                            </ul>
+                        </h:panelGroup>
+                    </div>
+                </div>
                 <br />
-                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTaskIndexLink}"/>
+                <h:link outcome="/admin/index" value="#{bundle.ListTaskIndexLink}" class="waves-effect waves-light btn">
+                    <i class="material-icons left">home</i>
+                </h:link>
+                <h:outputText value=" "/>
+                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}" class="waves-effect green waves-light btn">
+                    <i class="material-icons left">add_circle_outline</i>
+                </h:commandLink>
+                <br/>
+                <br/>
             </h:form>
         </ui:define>
     </ui:composition>

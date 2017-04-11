@@ -10,30 +10,52 @@
             <h:outputText value="#{bundle.ViewRoleTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.ViewRoleTitle} : #{roleController.selected.name}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRoleLabel_id}"/>
-                    <h:outputText value="#{roleController.selected.id}" title="#{bundle.ViewRoleTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewRoleLabel_name}"/>
-                    <h:outputText value="#{roleController.selected.name}" title="#{bundle.ViewRoleTitle_name}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{roleController.destroyAndView}" value="#{bundle.ViewRoleDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRoleEditLink}"/>
-                <br />
-                <h:commandLink action="#{roleController.prepareCreate}" value="#{bundle.ViewRoleCreateLink}" />
-                <br />
-                <h:commandLink action="#{roleController.prepareList}" value="#{bundle.ViewRoleShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRoleIndexLink}"/>
-
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">#{bundle.ListUserTitle}</span>
+                        <ul class="collection">
+                            <h:panelGroup rendered="${empty roleController.selected.userCollection}">
+                                <p class="collection-item">No Users !</p>
+                            </h:panelGroup>
+                            <ui:repeat value="#{roleController.selected.userCollection}" var="user">
+                                <li class="collection-item">
+                                    <span class="title"><h:outputText value="#{user.name}"/></span>
+                                    <p><h:outputText value="#{user.email}" class="grey-text"/></p>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </div>
             </h:form>
+            <h:form>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <h:commandLink action="#{roleController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewRoleCreateLink}">
+                                <i class="material-icons">add_circle_outline</i>
+                            </h:commandLink>
+                        </li> 
+                        <li>
+                            <h:commandLink action="#{roleController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewRoleDestroyLink}">
+                                <i class="material-icons">delete</i>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewRoleEditLink}">
+                                <i class="material-icons">mode_edit</i>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </h:form> 
         </ui:define>
     </ui:composition>
 

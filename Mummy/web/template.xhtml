@@ -14,20 +14,23 @@
         
         <!--Import materialize.css-->
         <h:outputStylesheet library="css" name="materialize.css"/>
-        <!--Import adminStyle.css-->
-        <h:outputStylesheet library="css" name="style.css"/>
+        <!--Import style.css-->
+        <h:outputStylesheet library="css" name="style.css"/>      
+        <!--Import add style -->
+        <ui:insert name="style"></ui:insert>  
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
 
     <h:body>
+        <h:form>
         <!-- Dropdown Structure -->
         <ul id="dropdownprofile" class="dropdown-content">
-            <li><a href="#">#{bundle.MenuProfileLink}</a></li>
+            <li><h:link outcome="/user/View" value="#{bundle.MenuProfileLink}"/></li>
             <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
                 <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
             </h:panelGroup>
-            <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
+            <li><h:commandLink action="#{userController.logout()}" value="#{bundle.MenuLogoutLink}"/></li>
         </ul>
         <!-- Navigation -->
         <nav>
@@ -35,28 +38,41 @@
                 <div class="container">
                     <h:link outcome="/index.xhtml" value="#{bundle.AppName}" class="brand-logo"/>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">                                          
-                        <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>    
-                        <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-button" href="#!" data-activates="dropdownprofile">${request.remoteUser}<i class="material-icons right">arrow_drop_down</i></a></li>
-                    </ul>
-                    <ul class="side-nav" id="mobile-demo">                     
-                        <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>                   
-                        <!-- Dropdown Trigger -->
-                        
-                        <li class="divider"></li>
-                        <li><a class="subheader">${request.remoteUser}</a></li>
-                        <li><a href="#">#{bundle.MenuProfileLink}</a></li>
-                        <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
-                            <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
-                        </h:panelGroup>
-                        <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
-                    </ul>
+                    
+                    <h:panelGroup rendered="${not empty request.remoteUser}">
+                        <ul class="right hide-on-med-and-down">                                          
+                            <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>    
+                            <!-- Dropdown Trigger -->
+                            <li><a class="dropdown-button" href="#!" data-activates="dropdownprofile">${userController.loggedUser.name}<i class="material-icons right">arrow_drop_down</i></a></li>
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo">                     
+                            <li><h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}"/></li>                   
+                            <!-- Dropdown Trigger -->
+                            <li class="divider"></li>
+                            <li><a class="subheader">${userController.loggedUser.name}</a></li>
+                            <li><h:link outcome="/user/View" value="#{bundle.MenuProfileLink}"/></li>
+                            <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
+                                <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
+                            </h:panelGroup>
+                            <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
+                        </ul>
+                    </h:panelGroup>                   
+                    <h:panelGroup rendered="${empty request.remoteUser}">
+                        <ul class="right hide-on-med-and-down">                                          
+                            <li><h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}"/></li>                   
+                            <li><h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" /></li>
+                        </ul>
+                        <ul class="side-nav" id="mobile-demo">                     
+                            <li><h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}"/></li>                   
+                            <li><h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" /></li>
+                        </ul>
+                    </h:panelGroup>
                 </div>
             </div>
         </nav>
+        </h:form>
         <!-- Content -->
-        <main>
+        <main class="grey lighten-4">
             <div class="container">
                 <ui:insert name="body">Default Body</ui:insert>
             </div>

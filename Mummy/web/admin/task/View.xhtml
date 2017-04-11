@@ -14,48 +14,126 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTaskLabel_id}"/>
-                    <h:outputText value="#{taskController.selected.id}" title="#{bundle.ViewTaskTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_title}"/>
-                    <h:outputText value="#{taskController.selected.title}" title="#{bundle.ViewTaskTitle_title}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_description}"/>
-                    <h:outputText value="#{taskController.selected.description}" title="#{bundle.ViewTaskTitle_description}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_begin}"/>
-                    <h:outputText value="#{taskController.selected.begin}" title="#{bundle.ViewTaskTitle_begin}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewTaskLabel_end}"/>
-                    <h:outputText value="#{taskController.selected.end}" title="#{bundle.ViewTaskTitle_end}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewTaskLabel_category}"/>
-                    <h:outputText value="#{taskController.selected.category}" title="#{bundle.ViewTaskTitle_category}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_progression}"/>
-                    <h:outputText value="#{taskController.selected.progression}" title="#{bundle.ViewTaskTitle_progression}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_fkCreator}"/>
-                    <h:outputText value="#{taskController.selected.fkCreator}" title="#{bundle.ViewTaskTitle_fkCreator}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_fkParent}"/>
-                    <h:outputText value="#{taskController.selected.fkParent}" title="#{bundle.ViewTaskTitle_fkParent}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_fkPriority}"/>
-                    <h:outputText value="#{taskController.selected.fkPriority}" title="#{bundle.ViewTaskTitle_fkPriority}"/>
-                    <h:outputText value="#{bundle.ViewTaskLabel_fkStatus}"/>
-                    <h:outputText value="#{taskController.selected.fkStatus}" title="#{bundle.ViewTaskTitle_fkStatus}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{taskController.destroyAndView}" value="#{bundle.ViewTaskDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTaskEditLink}"/>
-                <br />
-                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ViewTaskCreateLink}" />
-                <br />
-                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.ViewTaskShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTaskIndexLink}"/>
+                <h1>#{taskController.selected.title}</h1>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"><h:outputText value="#{taskController.selected.description}"/></span>
+                        <p>#{bundle.ViewTaskTitle_creator} <h:outputText value="#{taskController.selected.fkCreator.name}"/></p>
+                    </div>
+                </div>
 
-            </h:form>
+                <div class="card">
+                    <div class="card-content row">                  
+                        <ul class="collection col s12 m6">
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_begin}</span>
+                                <p>
+                                    <h:outputText value="#{taskController.selected.begin}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
+                                </p>
+                            </li>
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_end}</span>
+                                <p>
+                                    <h:outputText value="#{taskController.selected.end}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
+                                </p>
+                            </li>
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_progression}</span>
+                                <p><h:outputText value="#{taskController.selected.progression}"/> %</p>
+                            </li>
+                        </ul>
+                        <ul class="collection col s12 m6">
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_priority}</span>
+                                <p><h:outputText value="#{taskController.selected.fkPriority.name}"/></p>
+                            </li>
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_status}</span>
+                                <p><h:outputText value="#{taskController.selected.fkStatus.name}"/></p>
+                            </li>
+                            <li class="collection-item">
+                                <span class="title grey-text">#{bundle.ViewTaskTitle_category}</span>
+                                <p><h:outputText value="#{taskController.selected.category}"/></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>       
+                
+                <h:panelGroup rendered="${not empty taskController.selected.fkParent}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">#{bundle.ViewTaskTitle_parent}</span>
+                            <p>#{taskController.selected.fkParent.title}</p>
+                            <p class="grey-text">#{taskController.selected.fkParent.description}</p>
+                        </div>
+                    </div>
+                </h:panelGroup>             
+
+                <div class="card">
+                    <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a class="active" href="#participants">Participants</a></li>
+                            <li class="tab"><a href="#subtasks">Subtasks</a></li>
+                        </ul>
+                    </div>  
+                    <div class="card-content">
+                        <div id="participants">
+                            <ul class="collection">
+                                <h:panelGroup rendered="${empty taskController.selected.participantCollection}">
+                                    <li class="collection-item">No participants !</li>
+                                </h:panelGroup>
+                                <ui:repeat value="#{taskController.selected.participantCollection}" var="participant">
+                                    <li class="collection-item">
+                                        <span class="title"><h:outputText value="#{participant.idUser.name}"/></span>
+                                        <p><h:outputText value="#{participant.idUser.email}" class="grey-text"/></p>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        <div id="subtasks">
+                            <ul class="collection">
+                                <h:panelGroup rendered="${empty taskController.selected.taskCollection}">
+                                    <p class="collection-item">No subtasks !</p>
+                                </h:panelGroup>
+                                <ui:repeat value="#{taskController.selected.taskCollection}" var="subtask">
+                                    <li class="collection-item">
+                                        <span class="title"><h:outputText value="#{subtask.title}"/></span>
+                                        <p><h:outputText value="#{subtask.description}" class="grey-text"/></p>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </h:form>       
+            <h:form>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <h:commandLink action="#{taskController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewTaskCreateLink}">
+                                <i class="material-icons">add_circle_outline</i>
+                            </h:commandLink>
+                        </li> 
+                        <li>
+                            <h:commandLink action="#{taskController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewTaskDestroyLink}">
+                                <i class="material-icons">delete</i>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewTaskEditLink}">
+                                <i class="material-icons">mode_edit</i>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>      
         </ui:define>
     </ui:composition>
 

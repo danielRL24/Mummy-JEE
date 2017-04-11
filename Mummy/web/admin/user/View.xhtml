@@ -14,31 +14,74 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUserLabel_id}"/>
-                    <h:outputText value="#{userController.selected.id}" title="#{bundle.ViewUserTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_name}"/>
-                    <h:outputText value="#{userController.selected.name}" title="#{bundle.ViewUserTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_email}"/>
-                    <h:outputText value="#{userController.selected.email}" title="#{bundle.ViewUserTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewUserLabel_pwd}"/>
-                    <h:outputText value="#{userController.selected.pwd}" title="#{bundle.ViewUserTitle_pwd}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{userController.destroyAndView}" value="#{bundle.ViewUserDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUserEditLink}"/>
-                <br />
-                <h:commandLink action="#{userController.prepareCreate}" value="#{bundle.ViewUserCreateLink}" />
-                <br />
-                <h:commandLink action="#{userController.prepareList}" value="#{bundle.ViewUserShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUserIndexLink}"/>
-
+                <h1>#{bundle.ViewUserTitle}</h1>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">#{userController.selected.name}</span>
+                        <p>#{userController.selected.email}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a class="active" href="#roles">Roles</a></li>
+                            <li class="tab"><a href="#tasks">Tasks</a></li>
+                        </ul>
+                    </div>  
+                    <div class="card-content">
+                        <div id="roles">
+                            <ul class="collection">
+                                <h:panelGroup rendered="${empty userController.selected.roleCollection}">
+                                    <li class="collection-item">No roles !</li>
+                                </h:panelGroup>
+                                <ui:repeat value="#{userController.selected.roleCollection}" var="role">
+                                    <li class="collection-item">
+                                        <span class="title"><h:outputText value="#{role.name}"/></span>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                        <div id="tasks">
+                            <ul class="collection">
+                                <h:panelGroup rendered="${empty userController.selected.taskCollection}">
+                                    <p class="collection-item">No Tasks !</p>
+                                </h:panelGroup>
+                                <ui:repeat value="#{userController.selected.taskCollection}" var="task">
+                                    <li class="collection-item">
+                                        <span class="title"><h:outputText value="#{task.title}"/></span>
+                                        <p><h:outputText value="#{task.description}" class="grey-text"/></p>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </h:form>
+            <h:form>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li>
+                            <h:commandLink action="#{userController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewUserCreateLink}">
+                                <i class="material-icons">add_circle_outline</i>
+                            </h:commandLink>
+                        </li> 
+                        <li>
+                            <h:commandLink action="#{userController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewUserDestroyLink}">
+                                <i class="material-icons">delete</i>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewUserEditLink}">
+                                <i class="material-icons">mode_edit</i>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </h:form> 
         </ui:define>
     </ui:composition>
-
 </html>
+

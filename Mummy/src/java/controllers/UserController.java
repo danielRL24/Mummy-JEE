@@ -4,9 +4,12 @@ import entities.User;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import facades.UserFacade;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -71,6 +74,11 @@ public class UserController implements Serializable {
         current = (User) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+    
+    public String prepareProfile() {
+        
+        return "";
     }
 
     public String prepareCreate() {
@@ -228,6 +236,26 @@ public class UserController implements Serializable {
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + User.class.getName());
             }
+        }
+
+    }
+    
+    public User getLoggedUser() {
+        String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        System.out.println(remoteUser);
+        if (remoteUser != null) {
+            current = ejbFacade.findUserByEmail(remoteUser);
+        }
+        return current;
+    }
+    
+    public void logout() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
