@@ -21,65 +21,68 @@
                     <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
                     
                     <h1>Your tasks</h1>
-                    <ul class="collection">                    
+                    <ul class="collapsible popout" data-collapsible="accordion">                    
                         <ui:repeat value="#{taskController.items}" var="item">
-                            <li class="collection-item">
-                                <div class="row" id="taskContent">
-                                        <span class="title">
-                                            <h2>
-                                                <h:outputText value="#{item.title}"/>
-                                            </h2>
-                                        </span>
-                                    
-                                    <div class="col s6">    
-                                        <p>
-                                            <h:outputText value="#{bundle.ListTaskTitle_end}: "/>
-                                            <h:outputText value="#{item.end}">
-                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                            </h:outputText>
-                                        </p>
-                                        <p>
-                                             <h:outputText value="#{bundle.ListTaskTitle_progression}: "/>                                      
-                                             <h:outputText value="#{item.progression}"/>
-                                             
-                                        </p>
-                                        <p>
-                                            <h:outputText value="#{bundle.ListTaskTitle_fkPriority}: "/>           
-                                            <h:outputText value="#{item.fkPriority}"/>
-                                        </p>
-                                        
-                                    </div>
-                                    <div class="col s6">
-                                        <p>
-                                            <h:outputText value="Time left: "/>
-                                            <h:outputText value="#{item.getTimeLeft().get(3)} Days  "/>                                                             
-                                            <h:outputText value="#{item.getTimeLeft().get(2)} Hours "/>
-                                            <h:outputText value="#{item.getTimeLeft().get(1)} Min "/>
-                                            <h:outputText value="#{item.getTimeLeft().get(0)} Sec "/>
-                                        </p>
-                                        <p>
-                                            <div class="progress">                               
-                                                <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
-                                            </div>
-                                        </p>
-                                        <p>
-                                            <h:outputText value="Task lenght: "/>
-                                            <h:outputText value="#{item.getLength()} days"/>
-                                        </p>
-                                    </div>
+                            <li>
+                                <div class="collapsible-header">
+                                    <h4><h:outputText value="#{item.title}"/></h4>
+                                    <p>                                    
+                                        <div class="progress">                               
+                                            <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
+                                        </div>
+                                    </p>
                                 </div>
-                                
-                                <div class="row">                                            
-                                    <h:outputText value="#{bundle.ListTaskTitle_description}"/>
-                                    <div class="col s12">
-                                            <h:outputText value="#{item.description}"/>
+                                <div class="collapsible-body">                                    
+                                    <div class="row">
+                                        <div class="col s6">    
+                                            <p>
+                                                <span class="title grey-text">#{bundle.ListTaskTitle_end}: </span>
+                                                <h:outputText value="#{item.end}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </p>
+                                            <p>
+                                                 <span class="title grey-text">#{bundle.ListTaskTitle_progression}: </span>                                      
+                                                 <h:outputText value="#{item.progression}"/>                                             
+                                            </p>
+                                            <p>
+                                                <span class="title grey-text">#{bundle.ListTaskTitle_fkPriority}: </span>        
+                                                <h:outputText value="#{item.fkPriority}"/>
+                                            </p>
+
+                                        </div>
+                                        <div class="col s6">
+                                            <p>
+                                                <h:outputText value="Time left: "/>
+                                                <h:outputText value="#{item.getTimeLeft().get(3)} Days  "/>                                                             
+                                                <h:outputText value="#{item.getTimeLeft().get(2)} Hours "/>
+                                                <h:outputText value="#{item.getTimeLeft().get(1)} Min "/>
+                                                <h:outputText value="#{item.getTimeLeft().get(0)} Sec "/>
+                                            </p>
+
+                                            <p>
+                                                <h:outputText value="Task lenght: "/>
+                                                <h:outputText value="#{item.getLength()} days"/>
+                                            </p>
+                                        </div>
                                     </div>
+
+                                    <div class="row">                                            
+
+                                        <div class="col s12">
+                                            <span class="title grey-text">#{bundle.ListTaskTitle_description}</span>
+                                            <p>
+                                                <h:outputText value="#{item.description}"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                        <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
+                                        <h:outputText value=" "/>
+                                        <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
+
                                 </div>
-                                    <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
-                                    <h:outputText value=" "/>
-                                    <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
-                                    <h:outputText value=" "/>
-                                    <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
                             </li>
                         </ui:repeat>
                     </ul>
