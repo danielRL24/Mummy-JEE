@@ -21,7 +21,8 @@
                     <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
                     
                     <h1>Your tasks</h1>
-                    <ul class="collapsible popout" data-collapsible="accordion">                    
+                    <ul class="collapsible popout" data-collapsible="accordion">        
+                        <!--TODO: display only logged user tasks-->
                         <ui:repeat value="#{taskController.items}" var="item">
                             <li>
                                 <div class="collapsible-header">
