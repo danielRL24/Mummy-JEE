@@ -6,7 +6,9 @@ import controllers.util.PaginationHelper;
 import facades.TaskFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -33,11 +35,12 @@ public class TaskController implements Serializable {
     public TaskController() {
     }
     
+    //DEPRECATED
     public Date getToDayDate()
     {
         Date date = new Date();
         return date;
-    }
+    }    
 
     public Task getSelected() {
         if (current == null) {

@@ -20,123 +20,69 @@
                     <h:commandLink action="#{taskController.previous}" value="#{bundle.Previous} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
                     
-                    <ul class="collection with-header">
-                        <li class="collection-header"><h4>header</h4></li>
-                    
+                    <h1>Your tasks</h1>
+                    <ul class="collection">                    
                         <ui:repeat value="#{taskController.items}" var="item">
                             <li class="collection-item">
-                                <div>
-                                    <span class="title">
-                                        <h:outputText value="#{item.title}"/>
-                                    </span>
-                                    <p>
-                                       <h:outputText value="#{item.id}"/>
-                                    </p>
-                                    <p>
-                                        <h:outputText value="#{item.begin} "/>
-                                        <h:outputText value="#{item.end}"/>
+                                <div class="row" id="taskContent">
+                                        <span class="title">
+                                            <h2>
+                                                <h:outputText value="#{item.title}"/>
+                                            </h2>
+                                        </span>
+                                    
+                                    <div class="col s6">    
+                                        <p>
+                                            <h:outputText value="#{bundle.ListTaskTitle_end}: "/>
+                                            <h:outputText value="#{item.end}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </p>
+                                        <p>
+                                             <h:outputText value="#{bundle.ListTaskTitle_progression}: "/>                                      
+                                             <h:outputText value="#{item.progression}"/>
+                                             
+                                        </p>
+                                        <p>
+                                            <h:outputText value="#{bundle.ListTaskTitle_fkPriority}: "/>           
+                                            <h:outputText value="#{item.fkPriority}"/>
+                                        </p>
                                         
-                                        total time: 
-                                        <!--To do correct stuff, time left should be computed with Calendar as 
-                                        date is deprecated-->
-                                        #{(item.end.getTime()-item.begin.getTime())/(3600*24*1000)}
-                                        #{(item.end.getTime()-taskController.getToDayDate().getTime())/(3600*24*1000)}
-                                    </p>
-                                    <div class="progress">                               
-                                        <div class="determinate" style="width: #{item.progression}%"></div>
                                     </div>
+                                    <div class="col s6">
+                                        <p>
+                                            <h:outputText value="Time left: "/>
+                                            <h:outputText value="#{item.getTimeLeft().get(3)} Days  "/>                                                             
+                                            <h:outputText value="#{item.getTimeLeft().get(2)} Hours "/>
+                                            <h:outputText value="#{item.getTimeLeft().get(1)} Min "/>
+                                            <h:outputText value="#{item.getTimeLeft().get(0)} Sec "/>
+                                        </p>
+                                        <p>
+                                            <div class="progress">                               
+                                                <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
+                                            </div>
+                                        </p>
+                                        <p>
+                                            <h:outputText value="Task lenght: "/>
+                                            <h:outputText value="#{item.getLength()} days"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">                                            
+                                    <h:outputText value="#{bundle.ListTaskTitle_description}"/>
+                                    <div class="col s12">
+                                            <h:outputText value="#{item.description}"/>
+                                    </div>
+                                </div>
                                     <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
                                     <h:outputText value=" "/>
                                     <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
                                     <h:outputText value=" "/>
                                     <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
-                                </div>
                             </li>
                         </ui:repeat>
                     </ul>
-                    <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_begin}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.begin}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_end}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.end}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_category}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.category}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_progression}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.progression}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkCreator}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkCreator}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkParent}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkParent}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkPriority}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkPriority}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaskTitle_fkStatus}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fkStatus}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
                 </h:panelGroup>
                 <br />
                 
@@ -147,6 +93,4 @@
             </h:form>
         </ui:define>
     </ui:composition>
-    <p>coucou</p>
-
 </html>
