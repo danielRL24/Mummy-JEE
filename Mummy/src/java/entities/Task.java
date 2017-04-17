@@ -1,8 +1,10 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -99,7 +101,38 @@ public class Task implements Serializable {
         this.end = end;
         this.progression = progression;
     }
+    
+    /**
+     * return time left between actual time and end task's time
+     * @return array with [sec,min,h,days]
+     */
+    public List getTimeLeft()
+    {
+        //current date
+        Date date = new Date();
+        
+        List<Integer> list= new ArrayList<Integer>();
+        long diff= this.getEnd().getTime()-date.getTime();
 
+
+        long diffSeconds = diff / 1000 % 60;
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (3600 * 1000);
+        int diffInDays = (int)((diff) / (1000 * 3600 * 24));
+        
+//        list.add((int)diff);
+        list.add((int)diffSeconds);
+        list.add((int)diffMinutes);
+        list.add((int)diffHours);
+        list.add(diffInDays);
+
+        return list;
+    }
+    public int getLength()
+    {
+        return (int)((getEnd().getTime()-getBegin().getTime())/(3600*24*1000));
+    }
+    
     public Integer getId() {
         return id;
     }
