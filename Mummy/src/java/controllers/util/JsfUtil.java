@@ -1,5 +1,8 @@
 package controllers.util;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -55,6 +58,26 @@ public class JsfUtil {
     public static Object getObjectFromRequestParameter(String requestParameterName, Converter converter, UIComponent component) {
         String theId = JsfUtil.getRequestParameter(requestParameterName);
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
+    }
+    
+    private static String encodeHex(byte[] digest) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < digest.length; i++) {
+            sb.append(Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
+    
+    public static String digest(String alg, String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(alg);
+            byte[] buffer = input.getBytes("UTF-8");
+            md.update(buffer);
+            byte[] digest = md.digest();
+            return encodeHex(digest);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            return e.getMessage();
+        }
     }
 
 }

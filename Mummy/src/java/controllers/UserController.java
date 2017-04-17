@@ -3,13 +3,18 @@ package controllers;
 import entities.User;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import entities.Role;
 import facades.UserFacade;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.print.Collation;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -31,6 +36,8 @@ public class UserController implements Serializable {
     private facades.UserFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private RoleController roleController;
 
     public UserController() {
     }
@@ -89,7 +96,10 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
+            current.setPwd(JsfUtil.digest("SHA-256", current.getPwd()));         
             getFacade().create(current);
+            if(current.getRoleCollection().isEmpty()) {
+            }
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
         } catch (Exception e) {

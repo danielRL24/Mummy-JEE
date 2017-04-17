@@ -10,25 +10,31 @@
             <h:outputText value="#{bundle.CreateStatusTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.CreateStatusTitle}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateStatusLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{statusController.selected.id}" title="#{bundle.CreateStatusTitle_id}" required="true" requiredMessage="#{bundle.CreateStatusRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateStatusLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{statusController.selected.name}" title="#{bundle.CreateStatusTitle_name}" required="true" requiredMessage="#{bundle.CreateStatusRequiredMessage_name}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{statusController.create}" value="#{bundle.CreateStatusSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{statusController.prepareList}" value="#{bundle.CreateStatusShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateStatusIndexLink}"/>
-            </h:form>
+            <div class="row">
+                <div class="card col s12 m6">
+                    <div class="card-content">
+                        <div classs="row">
+                            <h:form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:inputText id="name" value="#{statusController.selected.name}" title="#{bundle.CreateStatusTitle_name}" required="true" requiredMessage="#{bundle.CreateStatusRequiredMessage_name}"/>
+                                        <h:outputLabel value="#{bundle.CreateStatusLabel_name}" for="name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h:commandLink action="#{statusController.create}" value="#{bundle.CreateStatusSaveLink}" class="waves-effect waves-light btn green">
+                                        <i class="material-icons right">send</i>
+                                    </h:commandLink>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

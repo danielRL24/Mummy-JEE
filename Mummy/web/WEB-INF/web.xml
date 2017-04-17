@@ -35,6 +35,7 @@
             <url-pattern>/task/*</url-pattern>
             <url-pattern>/user/View.xhtml</url-pattern>
             <url-pattern>/user/Edit.xhtml</url-pattern>
+            <url-pattern>/user/List.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -50,6 +51,7 @@
             <url-pattern>/task/*</url-pattern>
             <url-pattern>/user/View.xhtml</url-pattern>
             <url-pattern>/user/Edit.xhtml</url-pattern>
+            <url-pattern>/user/List.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>

@@ -10,25 +10,28 @@
             <h:outputText value="#{bundle.EditPriorityTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.EditPriorityTitle}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditPriorityLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{priorityController.selected.id}" title="#{bundle.EditPriorityTitle_id}" required="true" requiredMessage="#{bundle.EditPriorityRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditPriorityLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{priorityController.selected.name}" title="#{bundle.EditPriorityTitle_name}" required="true" requiredMessage="#{bundle.EditPriorityRequiredMessage_name}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{priorityController.update}" value="#{bundle.EditPrioritySaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPriorityViewLink}"/>
-                <br />
-                <h:commandLink action="#{priorityController.prepareList}" value="#{bundle.EditPriorityShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditPriorityIndexLink}" />
+                <div class="row">
+                    <div class="card col s12 m6">
+                        <div class="card-content">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:inputText id="name" value="#{priorityController.selected.name}" title="#{bundle.EditPriorityTitle_name}" required="true" requiredMessage="#{bundle.EditPriorityRequiredMessage_name}"/>
+                                        <h:outputLabel value="#{bundle.EditPriorityLabel_name}" for="name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h:commandLink action="#{priorityController.update}" value="#{bundle.EditPrioritySaveLink}" class="waves-effect waves-light btn green">
+                                        <i class="material-icons right">send</i>
+                                    </h:commandLink>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

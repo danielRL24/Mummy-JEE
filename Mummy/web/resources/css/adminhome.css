@@ -8,9 +8,6 @@ main {
     flex: 1 0 auto;
 }
 
-.container {
-    width: 100% !important;
-}
 
 #index-banner {
     background-image: url("#{resource['imgs/home-bg.jpeg']}");

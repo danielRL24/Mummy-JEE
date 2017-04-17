@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert> | #{bundle.AppName}</title>
+        <title><ui:insert name="title">Default Title</ui:insert> | Admin | #{bundle.AppName}</title>
         <!--<h:outputStylesheet library="css" name="jsfcrud.css"/>-->
         
         <!--Import Google Fonts -->
@@ -26,7 +26,7 @@
         <nav class="grey darken-2">
             <div class="nav-wrapper">
                 <div class="container">
-                    <h:link outcome="/index.xhtml" value="#{bundle.AppName}" class="brand-logo"/>
+                    <h:link outcome="/admin/index.xhtml" value="#{bundle.AppName}" class="brand-logo"/>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">                     
                         <li><h:link outcome="/admin/task/List" value="#{bundle.MenuTasksLink}"/></li>
@@ -34,7 +34,7 @@
                         <li><h:link outcome="/admin/role/List" value="#{bundle.MenuRolesLink}"/></li>
                         <li><h:link outcome="/admin/status/List" value="#{bundle.MenuStatusLink}"/></li>
                         <li><h:link outcome="/admin/priority/List" value="#{bundle.MenuPrioritiesLink}"/></li>                     
-                        <li><h:link outcome="/task/List" value="#{bundle.MenuReturnSiteLink}"/></li>
+                        <li><h:link outcome="/index.xhtml" value="#{bundle.MenuReturnSiteLink}"/></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">                     
                         <li><h:link outcome="/admin/task/List" value="#{bundle.MenuTasksLink}"/></li>
@@ -42,7 +42,7 @@
                         <li><h:link outcome="/admin/role/List" value="#{bundle.MenuRolesLink}"/></li>
                         <li><h:link outcome="/admin/status/List" value="#{bundle.MenuStatusLink}"/></li>
                         <li><h:link outcome="/admin/priority/List" value="#{bundle.MenuPrioritiesLink}"/></li>                     
-                        <li><h:link outcome="/task/List" value="#{bundle.MenuReturnSiteLink}"/></li>
+                        <li><h:link outcome="/index.xhtml" value="#{bundle.MenuReturnSiteLink}"/></li>
                     </ul>
                 </div>
             </div>

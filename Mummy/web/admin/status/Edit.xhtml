@@ -10,25 +10,28 @@
             <h:outputText value="#{bundle.EditStatusTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.EditStatusTitle}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditStatusLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{statusController.selected.id}" title="#{bundle.EditStatusTitle_id}" required="true" requiredMessage="#{bundle.EditStatusRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditStatusLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{statusController.selected.name}" title="#{bundle.EditStatusTitle_name}" required="true" requiredMessage="#{bundle.EditStatusRequiredMessage_name}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{statusController.update}" value="#{bundle.EditStatusSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditStatusViewLink}"/>
-                <br />
-                <h:commandLink action="#{statusController.prepareList}" value="#{bundle.EditStatusShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditStatusIndexLink}" />
+                <div class="row">
+                    <div class="card col s12 m6">
+                        <div class="card-content">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:inputText id="name" value="#{statusController.selected.name}" title="#{bundle.EditStatusTitle_name}" required="true" requiredMessage="#{bundle.EditStatusRequiredMessage_name}"/>
+                                        <h:outputLabel value="#{bundle.EditStatusLabel_name}" for="name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h:commandLink action="#{statusController.update}" value="#{bundle.EditStatusSaveLink}" class="waves-effect waves-light btn green">
+                                        <i class="material-icons right">send</i>
+                                    </h:commandLink>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

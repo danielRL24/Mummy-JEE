@@ -29,7 +29,7 @@
                 <form class="login-form" action="j_security_check" method="post">
                     <div class="row">
                         <div class="input-field col s12 center">
-                            <h:link outcome="/index.xhtml"><img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login"/></h:link>
+                            <h:link outcome="/index.xhtml"><!--<img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login"/>--><h1>Mummy</h1></h:link>
                             <p class="center login-form-text">#{bundle.LoginTitle}</p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6 m6 l6">
-                            <p class="margin medium-small"><a href="#">#{bundle.LoginRegisterNow}</a></p>
+                            <p class="margin medium-small"><h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}"/></p>
                         </div>
                         <div class="input-field col s6 m6 l6">
                             <p class="margin right-align medium-small"><!--<a href="forgot-password.html">Forgot password?</a>--></p>
