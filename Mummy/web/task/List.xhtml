@@ -22,8 +22,7 @@
                     
                     <h1>Your tasks</h1>
                     <ul class="collapsible popout" data-collapsible="accordion">        
-                        <!--TODO: display only logged user tasks-->
-                        <ui:repeat value="#{taskController.items}" var="item">
+                        <ui:repeat value="#{userController.loggedUser.taskCollection}" var="item">
                             <li>
                                 <div class="collapsible-header">
                                     <h4><h:outputText value="#{item.title}"/></h4>
