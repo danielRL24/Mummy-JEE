@@ -76,11 +76,11 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <h:commandLink action="#{taskController.prepareView2(item)}" value="#{bundle.ListTaskViewLink}"/>
+                                        <h:commandLink action="#{taskController.prepareView2(item)}" value="#{bundle.ListTaskViewLink}" class="waves-effect waves-light btn"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
+                                        <h:commandLink action="#{taskController.prepareEdit2(item)}" value="#{bundle.ListTaskEditLink}" class="waves-effect waves-light btn"/>
                                         <h:outputText value=" "/>
-                                        <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
+                                        <h:commandLink action="#{taskController.destroy2(item)}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect waves-light btn"/>
 
                                 </div>
                             </li>

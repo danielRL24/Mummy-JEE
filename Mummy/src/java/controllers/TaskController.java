@@ -114,6 +114,11 @@ public class TaskController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
+    public String prepareEdit2(Task task) {
+        current = task;
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "Edit";
+    }
 
     public String update() {
         try {
@@ -128,6 +133,14 @@ public class TaskController implements Serializable {
 
     public String destroy() {
         current = (Task) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
+    public String destroy2(Task task) {
+        current = task;
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
