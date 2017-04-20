@@ -72,67 +72,22 @@
         </nav>
         </h:form>
         <!-- Content -->
-        <main class="grey lighten-4">
-            <div class="section no-pad-bot" id="index-banner">
-                <div class="container">
-                    <br/><br/>
-                    <h1 class="header center">#{bundle.AppName}</h1>
-                    <div class="row center">
-                        <h5 class="header col s12 light">Priscorum marique initium flumine et prope in conditum mercatoribus ad</h5>
-                    </div>
-                    <div class="row center">
-                        <h:panelGroup rendered="${empty request.remoteUser}">
-                            <h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}" class="btn-large waves-effect waves-light"/>
-                            <h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" class="btn-large waves-effect waves-light"/>
-                        </h:panelGroup>
-                        <h:panelGroup rendered="${not empty request.remoteUser}">
-                            <h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}" class="btn-large waves-effect waves-light"/>
-                            <h:link outcome="/user/View" value="#{bundle.MenuProfileLink}" class="btn-large waves-effect waves-light"/>                       
-                        </h:panelGroup>
-                    </div>
-                    <br/><br/>
+        <main class="grey lighten-4" id="index-banner">    
+            <div class="container">
+                <h1 class="header center">#{bundle.AppName}</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">Priscorum marique initium flumine et prope in conditum mercatoribus ad</h5>
                 </div>
-            </div>
-            
-            <div class="container grey lighten-4">
-                <div class="section">
-
-                    <!--   Icon Section   -->
-                    <div class="row">
-                      <div class="col s12 m4">
-                        <div class="icon-block">
-                          <h2 class="center"><i class="material-icons">format_align_justify</i></h2>
-                          <h5 class="center">Incredibile id ut in atque</h5>
-
-                          <p class="light">Sed si ille hac tam eximia fortuna propter utilitatem rei publicae frui non properat, ut omnia illa conficiat, quid ego, senator, facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret.</p>
-                        </div>
-                      </div>
-
-                      <div class="col s12 m4">
-                        <div class="icon-block">
-                          <h2 class="center"><i class="material-icons">group</i></h2>
-                          <h5 class="center">Ille Valerius Publicola humatur</h5>
-
-                          <p class="light">Quam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.</p>
-                        </div>
-                      </div>
-
-                      <div class="col s12 m4">
-                        <div class="icon-block">
-                          <h2 class="center"><i class="material-icons">format_align_left</i></h2>
-                          <h5 class="center">Quoddam docens ne ingenii</h5>
-
-                          <p class="light">Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur.</p>
-                        </div>
-                      </div>
-                    </div>
-
+                <div class="row center">
+                    <h:panelGroup rendered="${empty request.remoteUser}">
+                        <h:link outcome="/task/List" value="#{bundle.LoginConnectionLink}" class="btn-large waves-effect waves-light"/>
+                        <h:link outcome="/user/Create" value="#{bundle.LoginRegisterNow}" class="btn-large waves-effect waves-light"/>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="${not empty request.remoteUser}">
+                        <h:link outcome="/task/List" value="#{bundle.MenuMyTasksLink}" class="btn-large waves-effect waves-light"/>
+                        <h:link outcome="/user/View" value="#{bundle.MenuProfileLink}" class="btn-large waves-effect waves-light"/>                       
+                    </h:panelGroup>
                 </div>
-                <br/><br/>
-
-                <div class="section">
-
-                </div> 
             </div>
         </main>
         <!-- Footer -->

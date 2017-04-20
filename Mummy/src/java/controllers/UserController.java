@@ -25,6 +25,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 @Named("userController")
 @SessionScoped
@@ -83,6 +86,12 @@ public class UserController implements Serializable {
         return "View";
     }
     
+    public String prepareView2(User user) {
+        current = user;
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+    
     public String prepareProfile() {
         
         return "";
@@ -99,6 +108,7 @@ public class UserController implements Serializable {
             current.setPwd(JsfUtil.digest("SHA-256", current.getPwd()));         
             getFacade().create(current);
             if(current.getRoleCollection().isEmpty()) {
+                ejbFacade.addRoleUser(current);
             }
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
@@ -269,5 +279,4 @@ public class UserController implements Serializable {
         }
 
     }
-
 }

@@ -10,30 +10,45 @@
             <h:outputText value="#{bundle.EditUserTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>#{bundle.EditUserTitle}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditUserLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{userController.selected.id}" title="#{bundle.EditUserTitle_id}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditUserLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.EditUserTitle_name}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_email}"/>
-                    <h:outputLabel value="#{bundle.EditUserLabel_pwd}" for="pwd" />
-                    <h:inputText id="pwd" value="#{userController.selected.pwd}" title="#{bundle.EditUserTitle_pwd}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_pwd}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{userController.update}" value="#{bundle.EditUserSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditUserViewLink}"/>
-                <br />
-                <h:commandLink action="#{userController.prepareList}" value="#{bundle.EditUserShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditUserIndexLink}" />
-            </h:form>
+            <div class="row">
+                <div class="card col s12 m6">
+                    <div class="card-content">
+                        <div classs="row">
+                            <h:form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.EditUserTitle_name}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_name}"/>
+                                        <h:outputLabel value="#{bundle.EditUserLabel_name}" for="name" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                                        <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_email}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h:outputLabel value="#{bundle.EditUserLabel_pwd}" for="pwd" />
+                                        <h:inputSecret id="pwd" value="#{userController.selected.pwd}" title="#{bundle.EditUserTitle_pwd}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_pwd}"/>   
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h:link outcome="View" value="#{bundle.EditUserCancelLink}" class="waves-effect waves-light btn"/>
+                                    <h:commandLink action="#{userController.update}" value="#{bundle.EditUserSaveLink}" class="waves-effect waves-light btn green right">
+                                        <i class="material-icons right">send</i>
+                                    </h:commandLink>
+                                </div>
+                                <h:inputHidden id="role" value="user"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 
