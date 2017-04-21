@@ -19,7 +19,7 @@
                     <div class="card-content">
                         <h:outputText escape="false" value="#{bundle.ListStatusEmpty}" rendered="#{statusController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{statusController.items.rowCount > 0}">
-                            <h:dataTable value="#{statusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped">
+                            <h:dataTable value="#{statusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped responsive-table">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListStatusTitle_name}"/>
@@ -33,18 +33,19 @@
                                     <h:outputText value="#{item.taskCollection.size()}"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListStatusTitle_action}"/>
-                                    </f:facet>
-                                    <h:outputText value=" "/>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{statusController.prepareView}" value="#{bundle.ListStatusViewLink}" class="waves-effect green waves-light btn">
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{statusController.prepareEdit}" value="#{bundle.ListStatusEditLink}" class="waves-effect blue waves-light btn">
                                         <i class="material-icons left">mode_edit</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{statusController.destroy}" value="#{bundle.ListStatusDestroyLink}" class="waves-effect red waves-light btn">
                                         <i class="material-icons left">delete</i>
                                     </h:commandLink>

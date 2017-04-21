@@ -19,7 +19,7 @@
                     <div class="card-content">
                         <h:outputText escape="false" value="#{bundle.ListPriorityEmpty}" rendered="#{priorityController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{priorityController.items.rowCount > 0}">
-                            <h:dataTable value="#{priorityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped">
+                            <h:dataTable value="#{priorityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped responsive-table">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListPriorityTitle_name}"/>
@@ -33,18 +33,19 @@
                                     <h:outputText value="#{item.taskCollection.size()}"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListPriorityTitle_action}"/>
-                                    </f:facet>
-                                    <h:outputText value=" "/>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{priorityController.prepareView}" value="#{bundle.ListPriorityViewLink}" class="waves-effect green waves-light btn">
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{priorityController.prepareEdit}" value="#{bundle.ListPriorityEditLink}" class="waves-effect blue waves-light btn">
                                         <i class="material-icons left">mode_edit</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{priorityController.destroy}" value="#{bundle.ListPriorityDestroyLink}" class="waves-effect red waves-light btn">
                                         <i class="material-icons left">delete</i>
                                     </h:commandLink>

@@ -54,7 +54,7 @@
                             <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
                                 <li><h:link outcome="/admin/index" value="#{bundle.MenuGoToAdminLink}"/></li>
                             </h:panelGroup>
-                            <li><a href="#">#{bundle.MenuLogoutLink}</a></li>
+                            <li><h:commandLink action="#{userController.logout()}" value="#{bundle.MenuLogoutLink}"/></li>
                         </ul>
                     </h:panelGroup>                   
                     <h:panelGroup rendered="${empty request.remoteUser}">

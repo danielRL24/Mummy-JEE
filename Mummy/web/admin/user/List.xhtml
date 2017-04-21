@@ -19,7 +19,7 @@
                     <div class="card-content">
                         <h:outputText escape="false" value="#{bundle.ListUserEmpty}" rendered="#{userController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{userController.items.rowCount > 0}">
-                            <h:dataTable value="#{userController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped">
+                            <h:dataTable value="#{userController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped responsive-table">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListUserTitle_name}"/>
@@ -33,18 +33,19 @@
                                     <h:outputText value="#{item.email}"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListUserTitle_action}"/>
-                                    </f:facet>
-                                    <h:outputText value=" "/>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{userController.prepareView}" value="#{bundle.ListUserViewLink}" class="waves-effect green waves-light btn">
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{userController.prepareEdit}" value="#{bundle.ListUserEditLink}" class="waves-effect blue waves-light btn">
                                         <i class="material-icons left">mode_edit</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{userController.destroy}" value="#{bundle.ListUserDestroyLink}" class="waves-effect red waves-light btn">
                                         <i class="material-icons left">delete</i>
                                     </h:commandLink>

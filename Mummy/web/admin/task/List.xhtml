@@ -19,7 +19,7 @@
                     <div class="card-content">
                         <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{taskController.items.rowCount == 0}"/>
                         <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                            <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped">
+                            <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped responsive-table">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{bundle.ListTaskTitle_title}"/>
@@ -73,18 +73,19 @@
                                     <h:outputText value="#{item.fkStatus.name}"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{bundle.ListTaskTitle_action}"/>
-                                    </f:facet>
-                                    <h:outputText value=" "/>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}" class="waves-effect green waves-light btn">
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}" class="waves-effect blue waves-light btn">
                                         <i class="material-icons left">mode_edit</i>
                                     </h:commandLink>
-                                    <h:outputText value=" "/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"></f:facet>
                                     <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect red waves-light btn">
                                         <i class="material-icons left">delete</i>
                                     </h:commandLink>
