@@ -25,12 +25,10 @@
                         <ui:repeat value="#{userController.loggedUser.taskCollection}" var="item">
                             <li>
                                 <div class="collapsible-header">
-                                    <h4><h:outputText value="#{item.title}"/></h4>
-                                    <p>                                    
+                                    <h4><h:outputText value="#{item.title}"/></h4>                                                                     
                                         <div class="progress">                               
                                             <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
-                                        </div>
-                                    </p>
+                                        </div>                                    
                                 </div>
                                 <div class="collapsible-body">                                    
                                     <div class="row">
@@ -53,7 +51,7 @@
                                         </div>
                                         <div class="col s6">
                                             <p>
-                                                <h:outputText value="Time left: "/>
+                                                <h:outputText value="Time left: " class="title grey-text"/>
                                                 <h:outputText value="#{item.getTimeLeft().get(3)} Days  "/>                                                             
                                                 <h:outputText value="#{item.getTimeLeft().get(2)} Hours "/>
                                                 <h:outputText value="#{item.getTimeLeft().get(1)} Min "/>
@@ -61,7 +59,7 @@
                                             </p>
 
                                             <p>
-                                                <h:outputText value="Task lenght: "/>
+                                                <h:outputText value="Task lenght: " class="title grey-text"/>
                                                 <h:outputText value="#{item.getLength()} days"/>
                                             </p>
                                         </div>
