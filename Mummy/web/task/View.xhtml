@@ -67,7 +67,7 @@
                     <div class="card">
                         <div class="card-content">
                             <span class="card-title">#{bundle.ViewTaskTitle_parent}</span>
-                            <p>#{taskController.selected.fkParent.title}</p>
+                            <p><h:commandLink action="#{taskController.prepareView2(taskController.selected.fkParent)}" value="#{taskController.selected.fkParent.title}"/></p>
                             <p class="grey-text">#{taskController.selected.fkParent.description}</p>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                 </h:panelGroup>
                                 <ui:repeat value="#{taskController.selected.taskCollection}" var="subtask">
                                     <li class="collection-item">
-                                        <span class="title"><h:outputText value="#{subtask.title}"/></span>
+                                        <span class="title"><h:commandLink action="#{taskController.prepareView2(subtask)}" value="#{subtask.title}"/></span>
                                         <p><h:outputText value="#{subtask.description}" class="grey-text"/></p>
                                     </li>
                                 </ui:repeat>
