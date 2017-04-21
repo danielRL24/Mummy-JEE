@@ -21,14 +21,14 @@
                     <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
                     
                     <h1>Your tasks</h1>
-                    <ul class="collapsible popout" data-collapsible="accordion">        
+                    <ul class="collapsible" data-collapsible="accordion">   
                         <ui:repeat value="#{userController.loggedUser.taskCollection}" var="item">
                             <li>
-                                <div class="collapsible-header">
-                                    <h4><h:outputText value="#{item.title}"/></h4>                                                                     
-                                        <div class="progress">                               
-                                            <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
-                                        </div>                                    
+                                <div class="collapsible-header">                                   
+                                        <h:outputText value="#{item.title}"/>                                                                                                         
+                                    <div class="progress">                               
+                                        <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
+                                    </div>                                                   
                                 </div>
                                 <div class="collapsible-body">                                    
                                     <div class="row">
@@ -87,11 +87,12 @@
                 </h:panelGroup>
                 <br />
                 
-                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}"/>
+                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}"  class="waves-effect waves-light btn"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListTaskIndexLink}"/>
+                <h:link outcome="/index" value="#{bundle.ListTaskIndexLink}" class="waves-effect waves-light btn"><i class="material-icons left">home</i></h:link>
             </h:form>
+            <br/>
         </ui:define>
     </ui:composition>
 </html>
