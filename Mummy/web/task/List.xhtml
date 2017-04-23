@@ -14,19 +14,19 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{taskController.items.rowCount == 0}"/>
+                <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{userController.loggedUser.taskCollection.size() == 0}"/>
                 <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                    <h:outputText value="#{taskController.pagination.pageFirstItem + 1}..#{taskController.pagination.pageLastItem + 1}/#{taskController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{taskController.previous}" value="#{bundle.Previous} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
                     
                     <h1>Your tasks</h1>
                     <ul class="collapsible" data-collapsible="accordion">   
-                        <ui:repeat value="#{userController.loggedUser.taskCollection}" var="item">
+                        <ui:repeat value="#{userController.paginator.model}" var="item">
                             <li>
-                                <div class="collapsible-header #{(item.fkParent!=null) ? 'blue-grey lighten-5':''} ">                                   
+                                <!--if the task has parent, display it differently -->
+                                <div class="collapsible-header #{(item.fkParent!=null) ? 'blue-grey lighten-5':''} ">          
+                                    
+                                    <!--if the task has parent, display it differently -->
                                     <h:outputText value="#{item.title} #{(item.fkParent!=null) ?  ('&#9562;>'+=item.fkParent.title): ''}"/>                                                                                                         
-                                    <div class="progress">                               
+                                    <div class="progress">
                                         <div class="determinate" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
                                     </div>                                                   
                                 </div>
@@ -71,7 +71,7 @@
                                                             <h:commandLink action="#{taskController.prepareView2(child)}" class="collection-item">
                                                                 <h:outputText value="#{child.title}" class="blue-text"/> 
                                                                 <div class="progress grey">                               
-                                                                    <div class="determinate blue" style="width: #{item.getTimeLeft().get(3)/item.getLength()*100}%"></div>
+                                                                    <div class="determinate blue" style="width: #{child.getTimeLeft().get(3)/child.getLength()*100}%"></div>
                                                                 </div> 
                                                             </h:commandLink>
                                                         </li>
@@ -100,14 +100,35 @@
                                 </div>                               
                             </li>
                         </ui:repeat>
-                    </ul>
+                    </ul>                                    
                 </h:panelGroup>
                 <br />
                 
-                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}"  class="waves-effect waves-light btn"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTaskIndexLink}" class="waves-effect waves-light btn"><i class="material-icons left">home</i></h:link>
+                <ul class="pagination">
+                    <h:panelGroup rendered="#{userController.paginator.pageIndex!=1}">
+                        <li class="waves-effect active">
+                            <h:commandLink action="#{userController.paginator.prev()}" value="#{bundle.Previous}"/>
+                        </li>
+                    </h:panelGroup>
+                    
+                    <li class="disabled">
+                        <a href="#!">
+                            <h:outputText value="#{userController.paginator.pageIndex}/#{userController.paginator.pages}"/>
+                        </a>
+                    </li>
+                    
+                    <h:panelGroup rendered="#{userController.paginator.pageIndex != userController.paginator.pages}">
+                        <li class="waves-effect active">
+                            <h:commandLink action="#{userController.paginator.next()}" value="#{bundle.Next}"/>
+                        </li>
+                    </h:panelGroup>
+                    <h:inputHidden value="#{userController.paginator.pageIndex}"/>
+                </ul>
+                
+                
+                <div class="fixed-action-btn">
+                    <h:commandLink action="#{taskController.prepareCreate}" title="#{bundle.ListTaskCreateLink}"  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons left">add_circle_outline</i></h:commandLink>
+                </div>
             </h:form>
             <br/>
         </ui:define>

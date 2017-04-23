@@ -114,18 +114,26 @@ public class Task implements Serializable {
         List<Integer> list= new ArrayList<Integer>();
         long diff= this.getEnd().getTime()-date.getTime();
 
+        //avoid negativ values
+        if(diff<0)
+        {
+            diff=0;
+        }
+            
         long diffSeconds = diff / 1000 % 60;
         long diffMinutes = diff / (60 * 1000) % 60;
         long diffHours = diff / (3600 * 1000)%24;
         int diffInDays = (int)((diff) / (1000 * 3600 * 24));
+        
         
 //        list.add((int)diff);
         list.add((int)diffSeconds);
         list.add((int)diffMinutes);
         list.add((int)diffHours);
         list.add(diffInDays);
-
+        
         return list;
+
     }
     public int getLength()
     {

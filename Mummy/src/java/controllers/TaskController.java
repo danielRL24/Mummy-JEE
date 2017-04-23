@@ -71,6 +71,7 @@ public class TaskController implements Serializable {
         }
         return pagination;
     }
+    
 
     public String prepareList() {
         recreateModel();

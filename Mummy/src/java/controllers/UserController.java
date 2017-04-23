@@ -3,7 +3,11 @@ package controllers;
 import entities.User;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import controllers.util.RepeatPaginator;
+import entities.Participant;
 import entities.Role;
+import entities.Task;
+import facades.TaskFacade;
 import facades.UserFacade;
 import java.io.IOException;
 
@@ -11,10 +15,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.print.Collation;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -42,7 +48,28 @@ public class UserController implements Serializable {
     
     private RoleController roleController;
 
-    public UserController() {
+    private RepeatPaginator rPaginator;
+    
+    
+    public UserController() {    
+    }
+    
+    @PostConstruct
+    public void init()
+    {
+        getLoggedUser();
+        List<Task> listTask = new ArrayList(current.getTaskCollection());
+        for(Participant p: current.getParticipantCollection())
+        {
+            listTask.add(p.getIdTask());
+        }
+        rPaginator= new RepeatPaginator(listTask);
+        
+    }
+    
+    public RepeatPaginator getPaginator()
+    {
+        return rPaginator;
     }
 
     public User getSelected() {
@@ -74,6 +101,8 @@ public class UserController implements Serializable {
         }
         return pagination;
     }
+    
+    
 
     public String prepareList() {
         recreateModel();
@@ -207,6 +236,7 @@ public class UserController implements Serializable {
         recreateModel();
         return "List";
     }
+   
 
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
@@ -266,6 +296,7 @@ public class UserController implements Serializable {
         if (remoteUser != null) {
             current = ejbFacade.findUserByEmail(remoteUser);
         }
+        
         return current;
     }
     
@@ -279,4 +310,6 @@ public class UserController implements Serializable {
         }
 
     }
+    
+    
 }
