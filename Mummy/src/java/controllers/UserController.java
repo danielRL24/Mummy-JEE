@@ -310,6 +310,8 @@ public class UserController implements Serializable {
         }
 
     }
-    
-    
+
+    public SelectItem[] getTasksListUser(){
+        return JsfUtil.getSelectItems((List<?>) current.getTaskCollection(), true);
+    }
 }

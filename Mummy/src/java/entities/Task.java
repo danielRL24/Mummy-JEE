@@ -267,7 +267,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Task[ id=" + id + " ]";
+        return title;
     }
     
 }

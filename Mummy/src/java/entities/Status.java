@@ -100,7 +100,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Status[ id=" + id + " ]";
+        return name;
     }
     
 }

@@ -100,7 +100,7 @@ public class Priority implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Priority[ id=" + id + " ]";
+        return name;
     }
     
 }
