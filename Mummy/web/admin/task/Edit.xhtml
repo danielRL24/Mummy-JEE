@@ -70,8 +70,8 @@
                                 </h:selectOneMenu>
                                 <h:outputLabel value="#{bundle.EditTaskLabel_fkStatus}" for="fkStatus" />
                             </div>
-                            <br />
-                            <h:commandLink action='#{taskController.create("/participant/List.xhtml")}' value="#{bundle.EditTaskSaveLink}" class="waves-effect waves-light btn green">
+                            <br />                   
+                            <h:commandLink action='#{taskController.update("/participant/List.xhtml")}' value="#{bundle.EditTaskSaveLink}" class="waves-effect waves-light btn green">
                                 <i class="material-icons right">send</i>
                             </h:commandLink>
                         </div>

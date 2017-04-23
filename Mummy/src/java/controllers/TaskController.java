@@ -111,7 +111,7 @@ public class TaskController implements Serializable {
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCreated"));
             ParticipantController pc = new ParticipantController();
             if("".equals(path)) {
-                return prepareCreate();
+                return "View";
             }
             return path;
         } catch (Exception e) {
@@ -131,11 +131,14 @@ public class TaskController implements Serializable {
         return "Edit";
     }
 
-    public String update() {
+    public String update(String path) {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskUpdated"));
-            return "View";
+            if("".equals(path)) {
+                return "View";
+            }
+            return path;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
