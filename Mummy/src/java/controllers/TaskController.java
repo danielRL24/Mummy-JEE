@@ -3,6 +3,7 @@ package controllers;
 import entities.Task;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import entities.User;
 import facades.TaskFacade;
 
 import java.io.Serializable;
@@ -99,11 +100,20 @@ public class TaskController implements Serializable {
         return "Create";
     }
 
-    public String create() {
+    public void setHidden(User user)
+    {
+        current.setFkCreator(user);
+    }
+    
+    public String create(String path) {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCreated"));
-            return prepareCreate();
+            ParticipantController pc = new ParticipantController();
+            if("".equals(path)) {
+                return prepareCreate();
+            }
+            return path;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

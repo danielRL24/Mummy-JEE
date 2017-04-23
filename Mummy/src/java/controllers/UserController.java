@@ -292,7 +292,6 @@ public class UserController implements Serializable {
     
     public User getLoggedUser() {
         String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        System.out.println(remoteUser);
         if (remoteUser != null) {
             current = ejbFacade.findUserByEmail(remoteUser);
         }

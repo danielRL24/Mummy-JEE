@@ -13,52 +13,83 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <h1>Create a new task</h1>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{taskController.selected.id}" title="#{bundle.CreateTaskTitle_id}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
-                    <h:inputText id="title" value="#{taskController.selected.title}" title="#{bundle.CreateTaskTitle_title}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"/>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{taskController.selected.description}" title="#{bundle.CreateTaskTitle_description}" />
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_begin}" for="begin" />
-                    <h:inputText id="begin" value="#{taskController.selected.begin}" title="#{bundle.CreateTaskTitle_begin}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_begin}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_end}" for="end" />
-                    <h:inputText id="end" value="#{taskController.selected.end}" title="#{bundle.CreateTaskTitle_end}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_end}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_category}" for="category" />
-                    <h:inputText id="category" value="#{taskController.selected.category}" title="#{bundle.CreateTaskTitle_category}" />
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_progression}" for="progression" />
-                    <h:inputText id="progression" value="#{taskController.selected.progression}" title="#{bundle.CreateTaskTitle_progression}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_progression}"/>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkCreator}" for="fkCreator" />
-                    <h:selectOneMenu id="fkCreator" value="#{taskController.selected.fkCreator}" title="#{bundle.CreateTaskTitle_fkCreator}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkCreator}">
-                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkParent}" for="fkParent" />
-                    <h:selectOneMenu id="fkParent" value="#{taskController.selected.fkParent}" title="#{bundle.CreateTaskTitle_fkParent}" >
-                        <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkPriority}" for="fkPriority" />
-                    <h:selectOneMenu id="fkPriority" value="#{taskController.selected.fkPriority}" title="#{bundle.CreateTaskTitle_fkPriority}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkPriority}">
-                        <f:selectItems value="#{priorityController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_fkStatus}" for="fkStatus" />
-                    <h:selectOneMenu id="fkStatus" value="#{taskController.selected.fkStatus}" title="#{bundle.CreateTaskTitle_fkStatus}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkStatus}">
-                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.CreateTaskShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateTaskIndexLink}"/>
+                <div class="row">
+                    <div class="card col s12">
+                        <div class="card-content">
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
+                                <h:inputText id="title" value="#{taskController.selected.title}" title="#{bundle.CreateTaskTitle_title}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"/>
+                            </div>
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
+                                <h:inputText id="description" value="#{taskController.selected.description}" title="#{bundle.CreateTaskTitle_description}" />
+                            </div>
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_begin}" for="begin" />
+                                <h:inputText class="datepicker" id="begin" value="#{taskController.selected.begin}" title="#{bundle.CreateTaskTitle_begin}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_begin}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                                </h:inputText>
+                            </div>
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_end}" for="end" />
+                                <h:inputText class="datepicker" id="end" value="#{taskController.selected.end}" title="#{bundle.CreateTaskTitle_end}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_end}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                                </h:inputText>
+                            </div>
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_category}" for="category" />
+                                <h:inputText id="category" value="#{taskController.selected.category}" title="#{bundle.CreateTaskTitle_category}" />
+                            </div>
+                            <div class="input-field col s12">
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_progression}" for="progression" />
+                                <h:inputText id="progression" value="#{taskController.selected.progression}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_progression}"/>
+                            </div>
+                            <div class="input-field col s12">
+                                <h:selectOneMenu id="fkCreator" value="#{taskController.selected.fkCreator}" title="#{bundle.CreateTaskTitle_fkCreator}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkCreator}">
+                                    <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkCreator}" for="fkCreator" />
+                            </div>
+                            <div class="input-field col s12">
+                                <h:selectOneMenu id="fkParent" value="#{taskController.selected.fkParent}" title="#{bundle.CreateTaskTitle_fkParent}" >
+                                    <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkParent}" for="fkParent" />
+                            </div>
+                            <div class="input-field col s12">                                
+                                <h:selectOneMenu id="fkPriority" value="#{taskController.selected.fkPriority}" title="#{bundle.CreateTaskTitle_fkPriority}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkPriority}">
+                                    <f:selectItems value="#{priorityController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkPriority}" for="fkPriority" />
+                            </div>
+                            <div class="input-field col s12">
+                                <h:selectOneMenu id="fkStatus" value="#{taskController.selected.fkStatus}" title="#{bundle.CreateTaskTitle_fkStatus}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkStatus}">
+                                    <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkStatus}" for="fkStatus" />
+                            </div>
+                            <br />
+                            <h:commandLink action='#{taskController.create("/admin/participant/List.xhtml")}' value="#{bundle.CreateTaskSaveLink}" class="waves-effect waves-light btn green">
+                                <i class="material-icons right">send</i>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </div>
             </h:form>
+        </ui:define>
+        <ui:define name="script">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('select').material_select();
+                    $('.datepicker').pickadate({
+                        selectMonths: true, // Creates a dropdown to control month
+                        selectYears: 15, // Creates a dropdown of 15 years to control year
+                        format: 'dd.mm.yyyy'
+                    });
+                });
+            </script>
         </ui:define>
     </ui:composition>
 

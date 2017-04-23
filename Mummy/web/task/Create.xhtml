@@ -47,12 +47,6 @@
                                 <h:inputText id="progression" value="#{taskController.selected.progression}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_progression}"/>
                             </div>
                             <div class="input-field col s12">
-                                <h:selectOneMenu id="fkCreator" value="#{taskController.selected.fkCreator}" title="#{bundle.CreateTaskTitle_fkCreator}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkCreator}">
-                                    <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                                </h:selectOneMenu>
-                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkCreator}" for="fkCreator" />
-                            </div>
-                            <div class="input-field col s12">
                                 <h:selectOneMenu id="fkParent" value="#{taskController.selected.fkParent}" title="#{bundle.CreateTaskTitle_fkParent}" >
                                     <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
@@ -71,7 +65,7 @@
                                 <h:outputLabel value="#{bundle.CreateTaskLabel_fkStatus}" for="fkStatus" />
                             </div>
                             <br />
-                            <h:commandLink action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}" class="waves-effect waves-light btn green">
+                            <h:commandLink action='#{taskController.create("/participant/List.xhtml")}' value="#{bundle.CreateTaskSaveLink}" class="waves-effect waves-light btn green" onclick="#{taskController.setHidden(userController.loggedUser)}">
                                 <i class="material-icons right">send</i>
                             </h:commandLink>
                         </div>

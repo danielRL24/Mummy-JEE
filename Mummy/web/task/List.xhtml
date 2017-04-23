@@ -45,7 +45,7 @@
                                             </p>
                                             <p>
                                                 <span class="title grey-text">#{bundle.ListTaskTitle_fkPriority}: </span>        
-                                                <h:outputText value="#{item.fkPriority}"/>
+                                                <h:outputText value="#{item.fkPriority.name}"/>
                                             </p>
 
                                         </div>
@@ -91,11 +91,17 @@
                                             </p>
                                         </div>
                                     </div>
-                                        <h:commandLink action="#{taskController.prepareView2(item)}" value="#{bundle.ListTaskViewLink}" class="waves-effect waves-light btn"/>
-                                        <h:outputText value=" "/>
-                                        <h:commandLink action="#{taskController.prepareEdit2(item)}" value="#{bundle.ListTaskEditLink}" class="waves-effect waves-light btn"/>
-                                        <h:outputText value=" "/>
-                                        <h:commandLink action="#{taskController.destroy2(item)}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect waves-light btn"/>
+                                    <h:commandLink action="#{taskController.prepareView2(item)}" value="#{bundle.ListTaskViewLink}" class="waves-effect green waves-light btn">
+                                        <i class="material-icons left">open_in_new</i>
+                                    </h:commandLink>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{taskController.prepareEdit2(item)}" value="#{bundle.ListTaskEditLink}" class="waves-effect blue waves-light btn">
+                                        <i class="material-icons left">mode_edit</i>
+                                    </h:commandLink>
+                                    <h:outputText value=" "/>
+                                    <h:commandLink action="#{taskController.destroy2(item)}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect red waves-light btn">
+                                        <i class="material-icons left">delete</i>
+                                    </h:commandLink>
 
                                 </div>                               
                             </li>
