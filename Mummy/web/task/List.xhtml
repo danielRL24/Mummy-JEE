@@ -16,14 +16,14 @@
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{userController.loggedUser.taskCollection.size() == 0}"/>
                 <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                    
+
                     <h1>Your tasks</h1>
                     <ul class="collapsible" data-collapsible="accordion">   
                         <ui:repeat value="#{userController.paginator.model}" var="item">
                             <li>
                                 <!--if the task has parent, display it differently -->
                                 <div class="collapsible-header #{(item.fkParent!=null) ? 'blue-grey lighten-5':''} ">          
-                                    
+
                                     <!--if the task has parent, display it differently -->
                                     <h:outputText value="#{item.title} #{(item.fkParent!=null) ?  ('&#9562;>'+=item.fkParent.title): ''}"/>                                                                                                         
                                     <div class="progress">
@@ -40,8 +40,8 @@
                                                 </h:outputText>
                                             </p>
                                             <p>
-                                                 <span class="title grey-text">#{bundle.ListTaskTitle_progression}: </span>                                      
-                                                 <h:outputText value="#{item.progression}"/>                                             
+                                                <span class="title grey-text">#{bundle.ListTaskTitle_progression}: </span>                                      
+                                                <h:outputText value="#{item.progression}"/>                                             
                                             </p>
                                             <p>
                                                 <span class="title grey-text">#{bundle.ListTaskTitle_fkPriority}: </span>        
@@ -62,7 +62,7 @@
                                                 <h:outputText value="Task lenght: " class="title grey-text"/>
                                                 <h:outputText value="#{item.getLength()} days"/>
                                             </p>
-                                            
+
                                             <p>
                                                 <h:outputText value="Sub-tasks:" class="title grey-text"/>
                                                 <ul class="collection">
@@ -76,7 +76,7 @@
                                                             </h:commandLink>
                                                         </li>
                                                     </ui:repeat>
-                                                    
+
                                                 </ul>
                                             </p>
                                         </div>
@@ -102,27 +102,27 @@
                                     <h:commandLink action="#{taskController.destroy2(item)}" value="#{bundle.ListTaskDestroyLink}" class="waves-effect red waves-light btn">
                                         <i class="material-icons left">delete</i>
                                     </h:commandLink>
-
+                                    <h:outputText value=" "/>                             
                                 </div>                               
                             </li>
                         </ui:repeat>
                     </ul>                                    
                 </h:panelGroup>
                 <br />
-                
+
                 <ul class="pagination">
                     <h:panelGroup rendered="#{userController.paginator.pageIndex!=1}">
                         <li class="waves-effect active">
                             <h:commandLink action="#{userController.paginator.prev()}" value="#{bundle.Previous}"/>
                         </li>
                     </h:panelGroup>
-                    
+
                     <li class="disabled">
                         <a href="#!">
                             <h:outputText value="#{userController.paginator.pageIndex}/#{userController.paginator.pages}"/>
                         </a>
                     </li>
-                    
+
                     <h:panelGroup rendered="#{userController.paginator.pageIndex != userController.paginator.pages}">
                         <li class="waves-effect active">
                             <h:commandLink action="#{userController.paginator.next()}" value="#{bundle.Next}"/>
@@ -130,8 +130,8 @@
                     </h:panelGroup>
                     <h:inputHidden value="#{userController.paginator.pageIndex}"/>
                 </ul>
-                
-                
+
+
                 <div class="fixed-action-btn">
                     <h:commandLink action="#{taskController.prepareCreate}" title="#{bundle.ListTaskCreateLink}"  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons left">add_circle_outline</i></h:commandLink>
                 </div>

@@ -3,6 +3,7 @@ package controllers;
 import entities.Participant;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import entities.Task;
 import facades.ParticipantFacade;
 
 import java.io.Serializable;
@@ -66,24 +67,37 @@ public class ParticipantController implements Serializable {
         recreateModel();
         return "List";
     }
+    
+    public String prepareListFromUserTask() {
+        recreateModel();
+        return "/participant/List";
+    }
 
     public String prepareView() {
         current = (Participant) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
+    
+    public String prepareView(Participant participant) {
+        current = participant;
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
+    
 
     public String prepareCreate() {
         current = new Participant();
         selectedItemIndex = -1;
         return "Create";
     }
+      
 
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParticipantCreated"));
-            return prepareCreate();
+            return "List";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -95,12 +109,18 @@ public class ParticipantController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
+    
+    public String prepareEdit(Participant participant) {
+        current = participant;
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "Edit";
+    }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParticipantUpdated"));
-            return "View";
+            return "List";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -109,6 +129,15 @@ public class ParticipantController implements Serializable {
 
     public String destroy() {
         current = (Participant) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        performDestroy();
+        recreatePagination();
+        recreateModel();
+        return "List";
+    }
+    
+    public String destroy(Participant participant) {
+        current = participant;
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -230,6 +259,10 @@ public class ParticipantController implements Serializable {
             }
         }
 
+    }
+    
+    public void setHidden(Task task){
+        current.setIdTask(task);
     }
 
 }

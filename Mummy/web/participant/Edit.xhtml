@@ -14,29 +14,20 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditParticipantLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{participantController.selected.id}" title="#{bundle.EditParticipantTitle_id}" required="true" requiredMessage="#{bundle.EditParticipantRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditParticipantLabel_observator}" for="observator" />
-                    <h:inputText id="observator" value="#{participantController.selected.observator}" title="#{bundle.EditParticipantTitle_observator}" />
-                    <h:outputLabel value="#{bundle.EditParticipantLabel_idTask}" for="idTask" />
-                    <h:selectOneMenu id="idTask" value="#{participantController.selected.idTask}" title="#{bundle.EditParticipantTitle_idTask}" required="true" requiredMessage="#{bundle.EditParticipantRequiredMessage_idTask}">
-                        <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditParticipantLabel_idUser}" for="idUser" />
-                    <h:selectOneMenu id="idUser" value="#{participantController.selected.idUser}" title="#{bundle.EditParticipantTitle_idUser}" required="true" requiredMessage="#{bundle.EditParticipantRequiredMessage_idUser}">
-                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{participantController.update}" value="#{bundle.EditParticipantSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditParticipantViewLink}"/>
-                <br />
-                <h:commandLink action="#{participantController.prepareList}" value="#{bundle.EditParticipantShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditParticipantIndexLink}" />
+                <div class="row">
+                    <div class="card col s12">
+                        <div class="card-content">
+                            <h:outputText value="#{participantController.selected.idUser.name}" />
+                            <p>
+                                <h:selectBooleanCheckbox id="observator" value="#{participantController.selected.observator}" title="#{bundle.CreateParticipantTitle_observator}" />
+                                <h:outputLabel value="#{bundle.CreateParticipantLabel_observator}" for="observator" />
+                            </p>                    
+                            <h:commandLink action="#{participantController.update}" class="waves-effect waves-light btn green" value="#{bundle.EditParticipantSaveLink}">
+                                <i class="material-icons right">send</i>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

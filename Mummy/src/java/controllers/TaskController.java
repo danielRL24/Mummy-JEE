@@ -35,13 +35,12 @@ public class TaskController implements Serializable {
 
     public TaskController() {
     }
-    
+
     //DEPRECATED
-    public Date getToDayDate()
-    {
+    public Date getToDayDate() {
         Date date = new Date();
         return date;
-    }    
+    }
 
     public Task getSelected() {
         if (current == null) {
@@ -72,7 +71,6 @@ public class TaskController implements Serializable {
         }
         return pagination;
     }
-    
 
     public String prepareList() {
         recreateModel();
@@ -85,14 +83,13 @@ public class TaskController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-    public String prepareView2(Task task)
-    {
+
+    public String prepareView2(Task task) {
         current = task;
 
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
-    
 
     public String prepareCreate() {
         current = new Task();
@@ -100,16 +97,15 @@ public class TaskController implements Serializable {
         return "Create";
     }
 
-    public void setHidden(User user)
-    {
+    public void setHidden(User user) {
         current.setFkCreator(user);
     }
-    
+
     public void create() throws Exception {
         getFacade().create(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCreated"));
     }
-    
+
     public String createFromAdmin() {
         try {
             create();
@@ -117,9 +113,9 @@ public class TaskController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }    
+        }
     }
-    
+
     public String createFromUser() {
         try {
             create();
@@ -127,7 +123,7 @@ public class TaskController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }     
+        }
     }
 
     public String prepareEdit() {
@@ -135,6 +131,7 @@ public class TaskController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
+
     public String prepareEdit2(Task task) {
         current = task;
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -145,7 +142,7 @@ public class TaskController implements Serializable {
         getFacade().edit(current);
         JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskUpdated"));
     }
-    
+
     public String updateFromAdmin() {
         try {
             update();
@@ -153,9 +150,9 @@ public class TaskController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        } 
+        }
     }
-    
+
     public String updateFromUser() {
         try {
             update();
@@ -163,7 +160,7 @@ public class TaskController implements Serializable {
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }  
+        }
     }
 
     public String destroy() {
@@ -174,6 +171,7 @@ public class TaskController implements Serializable {
         recreateModel();
         return "List";
     }
+
     public String destroy2(Task task) {
         current = task;
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();

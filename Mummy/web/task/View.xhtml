@@ -62,7 +62,7 @@
                         </ul>
                     </div>
                 </div>       
-                
+
                 <h:panelGroup rendered="${not empty taskController.selected.fkParent}">
                     <div class="card">
                         <div class="card-content">
@@ -117,8 +117,8 @@
                     </a>
                     <ul>
                         <li>
-                            <h:commandLink action="#{taskController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewTaskCreateLink}">
-                                <i class="material-icons">add_circle_outline</i>
+                            <h:commandLink action="#{participantController.prepareListFromUserTask()}" class="btn-floating orange">
+                                <i class="material-icons">group</i>
                             </h:commandLink>
                         </li> 
                         <li>
