@@ -50,6 +50,7 @@ public class UserController implements Serializable {
 
     private RepeatPaginator rPaginator;
     
+    private Role tmpRole;
     
     public UserController() {    
     }
@@ -58,12 +59,14 @@ public class UserController implements Serializable {
     public void init()
     {
         getLoggedUser();
-        List<Task> listTask = new ArrayList(current.getTaskCollection());
-        for(Participant p: current.getParticipantCollection())
-        {
-            listTask.add(p.getIdTask());
+        if(current != null) {   
+            List<Task> listTask = new ArrayList(current.getTaskCollection());
+            for(Participant p: current.getParticipantCollection())
+            {
+                listTask.add(p.getIdTask());
+            }
+            rPaginator= new RepeatPaginator(listTask);
         }
-        rPaginator= new RepeatPaginator(listTask);
         
     }
     
@@ -137,7 +140,7 @@ public class UserController implements Serializable {
             current.setPwd(JsfUtil.digest("SHA-256", current.getPwd()));         
             getFacade().create(current);
             if(current.getRoleCollection().isEmpty()) {
-                ejbFacade.addRoleUser(current);
+                ejbFacade.addRoleUser(current, "user");
             }
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
@@ -145,6 +148,15 @@ public class UserController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+    
+    public String addRoleToUser() {
+        if(tmpRole != null) {
+            ejbFacade.addRoleUser(current, tmpRole.getName());          
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleAdded"));
+        }
+        tmpRole = null;
+        return "List";
     }
 
     public String prepareEdit() {
@@ -163,6 +175,17 @@ public class UserController implements Serializable {
             return null;
         }
     }
+    
+    public String updateFromAdmin() {
+        try {
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
+            return "/admin/user_role/List";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }  
+    }
 
     public String destroy() {
         current = (User) getItems().getRowData();
@@ -171,6 +194,11 @@ public class UserController implements Serializable {
         recreatePagination();
         recreateModel();
         return "List";
+    }
+    
+    public void destroyRole(Role role) {
+        ejbFacade.destroyRoleUser(current, role.getName());
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserDestroyed"));
     }
 
     public String destroyAndView() {
@@ -312,5 +340,13 @@ public class UserController implements Serializable {
     
     public SelectItem[] getTasksListUser(){
         return JsfUtil.getSelectItems((List<?>) current.getTaskCollection(), true);
+    }
+    
+    public Role getTmpRole() {
+        return tmpRole;
+    }
+    
+    public void setTmpRole(Role role) {
+        this.tmpRole = role;
     }
 }

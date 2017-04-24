@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/admin/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUserRoleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h1><h:outputText value="#{bundle.ListUserRoleTitle}"></h:outputText></h1>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListUserRoleEmpty}" rendered="#{userController.selected.roleCollection.size() == 0}"/>
+                <h:panelGroup rendered="#{userController.selected.roleCollection.size() > 0}">
+                    <ul class="collection with-header">
+                    <ui:repeat value="#{userController.selected.roleCollection}" var="role">
+                        <li class="collection-item">
+                            <div>
+                                <h:outputText value="#{role.name}"/>
+                                <h:commandLink action="#{userController.destroyRole(role)}" class="secondary-content">
+                                        <i class="material-icons left">delete</i>
+                                </h:commandLink>
+                            </div>
+                        </li>
+                    </ui:repeat>
+                    </ul>
+                </h:panelGroup>
+                <div class="fixed-action-btn">
+                    <h:link outcome="Create" title="Add a role" class="btn-floating btn-large waves-effect waves-light red">
+                        <i class="material-icons left">add_circle_outline</i>
+                    </h:link>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

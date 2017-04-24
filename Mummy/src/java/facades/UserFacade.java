@@ -30,10 +30,17 @@ public class UserFacade extends AbstractFacade<User> {
         return (User) users.getSingleResult();
     }
     
-    public void addRoleUser(User user) {
+    public void addRoleUser(User user, String rolename) {
         Query query = em.createNativeQuery("INSERT INTO user_role (useremail, rolename) " + " VALUES(?,?)");
         query.setParameter(1, user.getEmail());
-        query.setParameter(2, "user");
+        query.setParameter(2, rolename);
+        query.executeUpdate();
+    }
+    
+    public void destroyRoleUser(User user, String rolename) {
+        Query query = em.createNativeQuery("DELETE FROM `user_role` WHERE " + "useremail=? AND rolename=?");
+        query.setParameter(1, user.getEmail());
+        query.setParameter(2, rolename);
         query.executeUpdate();
     }
 }

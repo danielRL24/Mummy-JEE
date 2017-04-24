@@ -22,7 +22,7 @@
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.CreateUserTitle_name}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_name}"/>
-                                        <h:outputLabel value="#{bundle.CreateUserLabel_name}" for="name" />
+                                        <h:outputLabel value="#{bundle.CreateUserLabel_name}" for="name"/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -30,11 +30,15 @@
                                         <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
                                         <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_email}"/>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="input-field col s12">
                                         <h:outputLabel value="#{bundle.CreateUserLabel_pwd}" for="pwd" />
                                         <h:inputSecret id="pwd" value="#{userController.selected.pwd}" title="#{bundle.CreateUserTitle_pwd}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_pwd}"/>   
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h:selectManyMenu id="role" value="#{userController.selected.roleCollection}" title="#{bundle.CreateUserTitle_role}" >
+                                            <f:selectItems value="#{roleController.itemsAvailableSelectMany}" var="role" itemValue="#{role}" itemLabel="#{role.label}"/>
+                                        </h:selectManyMenu>
+                                    <h:outputLabel value="#{bundle.CreateUserLabel_role}" for="role" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -47,6 +51,11 @@
                     </div>
                 </div>
             </div>
+        </ui:define>
+        <ui:define name="script">
+            <script>
+                $('select').material_select();
+            </script>
         </ui:define>
     </ui:composition>
 
