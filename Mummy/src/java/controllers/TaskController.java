@@ -105,19 +105,29 @@ public class TaskController implements Serializable {
         current.setFkCreator(user);
     }
     
-    public String create(String path) {
+    public void create() throws Exception {
+        getFacade().create(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCreated"));
+    }
+    
+    public String createFromAdmin() {
         try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCreated"));
-            ParticipantController pc = new ParticipantController();
-            if("".equals(path)) {
-                return "View";
-            }
-            return path;
+            create();
+            return "/admin/participant/List.xhtml";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }
+        }    
+    }
+    
+    public String createFromUser() {
+        try {
+            create();
+            return "/participant/List.xhtml";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }     
     }
 
     public String prepareEdit() {
@@ -131,18 +141,29 @@ public class TaskController implements Serializable {
         return "Edit";
     }
 
-    public String update(String path) {
+    public void update() throws Exception {
+        getFacade().edit(current);
+        JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskUpdated"));
+    }
+    
+    public String updateFromAdmin() {
         try {
-            getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskUpdated"));
-            if("".equals(path)) {
-                return "View";
-            }
-            return path;
+            update();
+            return "/admin/participant/List.xhtml";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
-        }
+        } 
+    }
+    
+    public String updateFromUser() {
+        try {
+            update();
+            return "/participant/List.xhtml";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }  
     }
 
     public String destroy() {

@@ -65,7 +65,7 @@
                                 <h:outputLabel value="#{bundle.CreateTaskLabel_fkStatus}" for="fkStatus" />
                             </div>
                             <br />
-                            <h:commandLink action='#{taskController.create("/participant/List.xhtml")}' value="#{bundle.CreateTaskSaveLink}" class="waves-effect waves-light btn green" onclick="#{taskController.setHidden(userController.loggedUser)}">
+                            <h:commandLink action='#{taskController.createFromUser()}' value="#{bundle.CreateTaskSaveLink}" class="waves-effect waves-light btn green" onclick="#{taskController.setHidden(userController.loggedUser)}">
                                 <i class="material-icons right">send</i>
                             </h:commandLink>
                         </div>
