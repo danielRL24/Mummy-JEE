@@ -14,53 +14,52 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListParticipantEmpty}" rendered="#{participantController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{participantController.items.rowCount > 0}">
-                    <h:outputText value="#{participantController.pagination.pageFirstItem + 1}..#{participantController.pagination.pageLastItem + 1}/#{participantController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{participantController.previous}" value="#{bundle.Previous} #{participantController.pagination.pageSize}" rendered="#{participantController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{participantController.next}" value="#{bundle.Next} #{participantController.pagination.pageSize}" rendered="#{participantController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{participantController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParticipantTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParticipantTitle_observator}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observator}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParticipantTitle_idTask}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTask}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListParticipantTitle_idUser}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idUser}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{participantController.prepareView}" value="#{bundle.ListParticipantViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{participantController.prepareEdit}" value="#{bundle.ListParticipantEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{participantController.destroy}" value="#{bundle.ListParticipantDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{participantController.prepareCreate}" value="#{bundle.ListParticipantCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListParticipantIndexLink}"/>
+                <h1>Task participant</h1>
+                <div class="card">
+                    <div class="card-content">
+                        <h:outputText escape="false" value="#{bundle.ListParticipantEmpty}" rendered="#{participantController.items.rowCount == 0}"/>
+                        <h:panelGroup rendered="#{participantController.items.rowCount > 0}">
+                            <h:dataTable value="#{taskController.selected.participantCollection}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="striped responsive-table">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListParticipantTitle_id}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.idUser.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Observator" />
+                                    </f:facet>
+                                    <h:outputText value="Yes" rendered="#{item.observator == true}" />
+                                    <h:outputText value="No" rendered="#{item.observator == false}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink class="waves-effect blue waves-light btn" action="#{participantController.prepareEdit(item)}" value="#{bundle.ListParticipantEditLink}">
+                                        <i class="material-icons left">mode_edit</i>
+                                    </h:commandLink>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>                                    
+                                    <h:commandLink class="waves-effect red waves-light btn" action="#{participantController.destroy(item)}" value="#{bundle.ListParticipantDestroyLink}">
+                                        <i class="material-icons left">mode_edit</i>
+                                    </h:commandLink>
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </div>
+                </div>
+                <div class="fixed-action-btn">
+                    <h:commandLink class="btn-floating btn-large waves-effect waves-light red" action="#{participantController.prepareCreate}">
+                        <i class="material-icons left">add_circle_outline</i>
+                    </h:commandLink>
+                </div>
+                <br />  
+                <h:commandLink class="waves-effect waves-light btn" action="/admin/task/View" value="Back to task" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -72,6 +72,11 @@ public class ParticipantController implements Serializable {
         recreateModel();
         return "/participant/List";
     }
+    
+    public String prepareListFromAdminTask() {
+        recreateModel();
+        return "/admin/participant/List";
+    }
 
     public String prepareView() {
         current = (Participant) getItems().getRowData();

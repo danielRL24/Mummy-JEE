@@ -14,29 +14,35 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateParticipantLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{participantController.selected.id}" title="#{bundle.CreateParticipantTitle_id}" required="true" requiredMessage="#{bundle.CreateParticipantRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateParticipantLabel_observator}" for="observator" />
-                    <h:inputText id="observator" value="#{participantController.selected.observator}" title="#{bundle.CreateParticipantTitle_observator}" />
-                    <h:outputLabel value="#{bundle.CreateParticipantLabel_idTask}" for="idTask" />
-                    <h:selectOneMenu id="idTask" value="#{participantController.selected.idTask}" title="#{bundle.CreateParticipantTitle_idTask}" required="true" requiredMessage="#{bundle.CreateParticipantRequiredMessage_idTask}">
-                        <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateParticipantLabel_idUser}" for="idUser" />
-                    <h:selectOneMenu id="idUser" value="#{participantController.selected.idUser}" title="#{bundle.CreateParticipantTitle_idUser}" required="true" requiredMessage="#{bundle.CreateParticipantRequiredMessage_idUser}">
-                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
+                <div class="row">
+                    <div class="card col s12">
+                        <div class="card-content">
+                            <div class="input-field">
+                                <h:selectOneMenu id="idUser" value="#{participantController.selected.idUser}" title="#{bundle.CreateParticipantTitle_idUser}" required="true" requiredMessage="#{bundle.CreateParticipantRequiredMessage_idUser}">
+                                    <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateParticipantLabel_idUser}" for="idUser" />
+                            </div>
+                            <p>
+                                <h:selectBooleanCheckbox id="observator" value="#{participantController.selected.observator}" title="#{bundle.CreateParticipantTitle_observator}" />
+                                <h:outputLabel value="#{bundle.CreateParticipantLabel_observator}" for="observator" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <br />
-                <h:commandLink action="#{participantController.create}" value="#{bundle.CreateParticipantSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{participantController.prepareList}" value="#{bundle.CreateParticipantShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateParticipantIndexLink}"/>
+                <h:commandLink action="#{participantController.create}" value="#{bundle.CreateParticipantSaveLink}" class="waves-effect waves-light btn green" onclick="#{participantController.setHidden(taskController.selected)}">
+                    <i class="material-icons right">send</i>
+                </h:commandLink>
+
             </h:form>
+        </ui:define>
+        <ui:define name="script">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('select').material_select();
+                });
+            </script>
         </ui:define>
     </ui:composition>
 

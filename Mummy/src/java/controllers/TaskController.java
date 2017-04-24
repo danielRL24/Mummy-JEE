@@ -3,6 +3,7 @@ package controllers;
 import entities.Task;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import entities.Participant;
 import entities.User;
 import facades.TaskFacade;
 
@@ -86,7 +87,6 @@ public class TaskController implements Serializable {
 
     public String prepareView2(Task task) {
         current = task;
-
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -295,6 +295,22 @@ public class TaskController implements Serializable {
             }
         }
 
+    }
+    
+    public boolean checkObservator (User user, Task task) {
+        if(task.getFkCreator().getId() == user.getId()) {
+            return true;
+        } else {
+            for(Participant p : task.getParticipantCollection()) {
+                if (p.getIdUser().getId() == user.getId()) {
+                    if(p.getObservator()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
 
 }

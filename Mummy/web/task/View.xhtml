@@ -109,31 +109,33 @@
                         </div>
                     </div>
                 </div>
-            </h:form>       
-            <h:form>
-                <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large red">
-                        <i class="large material-icons">menu</i>
-                    </a>
-                    <ul>
-                        <li>
-                            <h:commandLink action="#{participantController.prepareListFromUserTask()}" class="btn-floating orange">
-                                <i class="material-icons">group</i>
-                            </h:commandLink>
-                        </li> 
-                        <li>
-                            <h:commandLink action="#{taskController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewTaskDestroyLink}">
-                                <i class="material-icons">delete</i>
-                            </h:commandLink>
-                        </li>
-                        <li>
-                            <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewTaskEditLink}">
-                                <i class="material-icons">mode_edit</i>
-                            </h:link>
-                        </li>
-                    </ul>
-                </div>
-            </h:form>      
+            </h:form>
+            <h:panelGroup rendered="#{taskController.checkObservator(userController.loggedUser, item) == true}">
+                <h:form>
+                    <div class="fixed-action-btn">
+                        <a class="btn-floating btn-large red">
+                            <i class="large material-icons">menu</i>
+                        </a>
+                        <ul>
+                            <li>
+                                <h:commandLink action="#{participantController.prepareListFromUserTask()}" class="btn-floating orange">
+                                    <i class="material-icons">group</i>
+                                </h:commandLink>
+                            </li> 
+                            <li>
+                                <h:commandLink action="#{taskController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewTaskDestroyLink}">
+                                    <i class="material-icons">delete</i>
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:link outcome="Edit" class="btn-floating blue" title="#{bundle.ViewTaskEditLink}">
+                                    <i class="material-icons">mode_edit</i>
+                                </h:link>
+                            </li>
+                        </ul>
+                    </div>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 

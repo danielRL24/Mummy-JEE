@@ -120,7 +120,12 @@
                             <h:commandLink action="#{taskController.prepareCreate}" class="btn-floating green" title="#{bundle.ViewTaskCreateLink}">
                                 <i class="material-icons">add_circle_outline</i>
                             </h:commandLink>
-                        </li> 
+                        </li>
+                        <li>
+                            <h:commandLink action="#{participantController.prepareListFromAdminTask()}" class="btn-floating orange">
+                                <i class="material-icons">group</i>
+                            </h:commandLink>
+                            </li> 
                         <li>
                             <h:commandLink action="#{taskController.destroyAndView}" class="btn-floating red" title="#{bundle.ViewTaskDestroyLink}">
                                 <i class="material-icons">delete</i>
