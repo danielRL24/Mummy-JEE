@@ -47,6 +47,15 @@
                                 <h:inputText id="progression" value="#{taskController.selected.progression}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_progression}"/>
                             </div>
                             <div class="input-field col s12">
+<<<<<<< Updated upstream
+=======
+                                <h:selectOneMenu id="fkCreator" value="#{taskController.selected.fkCreator}" title="#{bundle.CreateTaskTitle_fkCreator}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_fkCreator}">
+                                    <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="#{bundle.CreateTaskLabel_fkCreator}" for="fkCreator" />
+                            </div>
+                            <div class="input-field col s12">
+>>>>>>> Stashed changes
                                 <h:selectOneMenu id="fkParent" value="#{taskController.selected.fkParent}" title="#{bundle.CreateTaskTitle_fkParent}" >
                                     <f:selectItems value="#{taskController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
