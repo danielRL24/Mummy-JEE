@@ -10,14 +10,26 @@
             <h:outputText value="#{bundle.ListTaskTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h1>Your tasks</h1>
+            <div class="nav-wrapper">
+            <h:form>
+                <div class="file-field input-field row">
+                    <div class="file-path-wrapper col s12 m4">
+                        <h:inputText id="search" value="#{userController.searchTerm}" title="Search"/>
+                    </div>
+                    <h:commandLink action='#{userController.searchForTask()}' class="waves-effect waves-light btn">
+                        <i class="material-icons">youtube_searched_for</i>
+                    </h:commandLink>
+                </div>
+            </h:form>
+            </div>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{userController.paginator.model.size() == 0}"/>
                 <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-
-                    <h1>Your tasks</h1>
+                    
                     <ul class="collapsible" data-collapsible="accordion">   
                         <ui:repeat value="#{userController.paginator.model}" var="item">
                             <li>

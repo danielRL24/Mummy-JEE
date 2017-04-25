@@ -1,9 +1,8 @@
 package facades;
 
-import entities.Role;
+import entities.Task;
 import entities.User;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -42,5 +41,29 @@ public class UserFacade extends AbstractFacade<User> {
         query.setParameter(1, user.getEmail());
         query.setParameter(2, rolename);
         query.executeUpdate();
+    }
+    
+    public List<Task> getAllTasksCreate(User user) {
+        Query tasks = em.createNamedQuery("User.findAllTasksCreate").setParameter("id", user.getId());
+        return tasks.getResultList();
+    }
+    
+    public List<Task> getAllTasksParticipate(User user) {
+        Query tasks = em.createNamedQuery("User.findAllTasksParticipate").setParameter("id", user.getId());
+        return tasks.getResultList();
+    }
+    
+    public List<Task> getAllTasksCreateByName(User user, String title) {
+        Query tasks = em.createNamedQuery("User.findAllTasksCreateByTitle")
+                .setParameter("id", user.getId())
+                .setParameter("title", title);
+        return tasks.getResultList();
+    }
+    
+    public List<Task> getAllTasksParticipateByName(User user, String title) {
+        Query tasks = em.createNamedQuery("User.findAllTasksParticipateByTitle")
+                .setParameter("id", user.getId())
+                .setParameter("title", title);
+        return tasks.getResultList();
     }
 }

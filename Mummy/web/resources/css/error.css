@@ -1,0 +1,12 @@
+main {
+    background-image: url("#{resource['imgs/home-bg.jpeg']}");
+    background-position-x: center;
+    background-position-y: 70%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}

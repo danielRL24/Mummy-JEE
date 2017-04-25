@@ -4,22 +4,16 @@ import entities.User;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import controllers.util.RepeatPaginator;
-import entities.Participant;
 import entities.Role;
 import entities.Task;
-import facades.TaskFacade;
 import facades.UserFacade;
 import java.io.IOException;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.print.Collation;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -31,9 +25,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 @Named("userController")
 @SessionScoped
@@ -52,6 +43,8 @@ public class UserController implements Serializable {
     
     private Role tmpRole;
     
+    private String searchTerm;
+    
     public UserController() {    
     }
     
@@ -59,13 +52,10 @@ public class UserController implements Serializable {
     public void init()
     {
         getLoggedUser();
-        if(current != null) {   
-            List<Task> listTask = new ArrayList(current.getTaskCollection());
-            for(Participant p: current.getParticipantCollection())
-            {
-                listTask.add(p.getIdTask());
-            }
-            rPaginator= new RepeatPaginator(listTask);
+        if(current != null) {
+            List<Task> listTaskCreate = ejbFacade.getAllTasksCreate(current);
+            listTaskCreate.addAll(ejbFacade.getAllTasksParticipate(current));
+            rPaginator= new RepeatPaginator(listTaskCreate);
         }
         
     }
@@ -74,7 +64,7 @@ public class UserController implements Serializable {
     {
         return rPaginator;
     }
-
+    
     public User getSelected() {
         if (current == null) {
             current = new User();
@@ -104,8 +94,6 @@ public class UserController implements Serializable {
         }
         return pagination;
     }
-    
-    
 
     public String prepareList() {
         recreateModel();
@@ -348,5 +336,28 @@ public class UserController implements Serializable {
     
     public void setTmpRole(Role role) {
         this.tmpRole = role;
+    }
+    
+    
+    public String searchForTask() {
+        // getLoggedUser();
+        if(current != null) {
+            List<Task> listTaskCreate = ejbFacade.getAllTasksCreateByName(current, searchTerm);
+            listTaskCreate.addAll(ejbFacade.getAllTasksParticipateByName(current, searchTerm));
+            rPaginator= new RepeatPaginator(listTaskCreate);
+        }
+        
+        //this.searchTerm = "";
+        
+        return "List";
+    }
+    
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+    
+    public void setSearchTerm(String term)
+    {
+        this.searchTerm = term;
     }
 }

@@ -28,7 +28,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
     , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByPwd", query = "SELECT u FROM User u WHERE u.pwd = :pwd")})
+    , @NamedQuery(name = "User.findByPwd", query = "SELECT u FROM User u WHERE u.pwd = :pwd")
+    , @NamedQuery(name = "User.findAllTasksCreate", query = "SELECT t FROM User u LEFT OUTER JOIN u.taskCollection t WHERE u.id= :id")
+    , @NamedQuery(name = "User.findAllTasksParticipate", query = "SELECT p.idTask FROM User u LEFT OUTER JOIN u.participantCollection p WHERE u.id= :id")
+    , @NamedQuery(name = "User.findAllTasksCreateByTitle", query = "SELECT t FROM User u LEFT OUTER JOIN u.taskCollection t WHERE u.id= :id AND t.title LIKE CONCAT('%', :title, '%')")
+    , @NamedQuery(name = "User.findAllTasksParticipateByTitle", query = "SELECT p.idTask FROM User u LEFT OUTER JOIN u.participantCollection p WHERE u.id= :id AND p.idTask.title LIKE CONCAT('%', :title,'%')")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
