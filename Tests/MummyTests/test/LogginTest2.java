@@ -1,3 +1,4 @@
+import com.thoughtworks.selenium.Selenium;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.regex.Pattern;
@@ -7,6 +8,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,52 +16,51 @@ import org.openqa.selenium.support.ui.Select;
 
 
 @RunWith(Parameterized.class)
-public class LogTest2 {
+public class LogginTest2 {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-
-  private String inputName;
-  //private String expectedResult;
   
+  private final String userMail;
+  private final String userPwd;
+  
+  public LogginTest2(String email, String pwd)
+  {
+      this.userMail=email;
+      this.userPwd=pwd;
+  }
+
   @Before
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "c:/temp/chromedriver.exe");
     driver = new ChromeDriver();
     baseUrl = "http://localhost:8080/Mummy/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);   
   }
+  
+    @Parameters
+    public static Collection<Object[]> params() {
+        return Arrays.asList(
+                new Object[]{"newUser@mail.com", "pass"},
+                new Object[]{"wrongUser@mail.com", "faux"}
+        );
+    }
 
-  public LogTest2(String inputName/*, String expectedResult*/)
-  {
-      this.inputName=inputName;
-     // this.expectedResult=expectedResult;
-  }
-  
-  @Parameterized.Parameters
-  public static Collection names(){
-    return Arrays.asList(new Object[][] {
-        {"user2mail@mail.com"},
-        {"fake@mail.com"}
-    });
-  }
-  
   @Test
-  public void testLogTest2() throws InterruptedException {
+  public void testLogginTest2() throws Exception {
     driver.get(baseUrl);
-    Thread.sleep(1000);
     driver.findElement(By.xpath("(//a[contains(text(),'Login')])[3]")).click();
     driver.findElement(By.id("email")).clear();
-    driver.findElement(By.id("email")).sendKeys(inputName);
-    Thread.sleep(1000);
+    //driver.findElement(By.id("email")).sendKeys("newUser@mail.com");
+    driver.findElement(By.id("email")).sendKeys(this.userMail);
     driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("pass");
+    //driver.findElement(By.id("password")).sendKeys("pass");
+    driver.findElement(By.id("password")).sendKeys(this.userPwd);
+
+    driver.findElement(By.cssSelector("input.waves-button-input")).click();   
     Thread.sleep(1000);
-    driver.findElement(By.cssSelector("input.waves-button-input")).click();
-    Thread.sleep(1000);
-        
-    //Assert.assertEquals(driver, baseUrl);
+   
   }
 
   @After

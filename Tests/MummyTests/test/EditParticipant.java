@@ -1,28 +1,20 @@
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-
-@RunWith(Parameterized.class)
-public class LogTest2 {
+public class EditParticipant {
+    
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-  private String inputName;
-  //private String expectedResult;
-  
   @Before
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "c:/temp/chromedriver.exe");
@@ -31,35 +23,27 @@ public class LogTest2 {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
-  public LogTest2(String inputName/*, String expectedResult*/)
-  {
-      this.inputName=inputName;
-     // this.expectedResult=expectedResult;
-  }
-  
-  @Parameterized.Parameters
-  public static Collection names(){
-    return Arrays.asList(new Object[][] {
-        {"user2mail@mail.com"},
-        {"fake@mail.com"}
-    });
-  }
-  
   @Test
-  public void testLogTest2() throws InterruptedException {
+  public void testEditParticipant() throws Exception {
     driver.get(baseUrl);
-    Thread.sleep(1000);
-    driver.findElement(By.xpath("(//a[contains(text(),'Login')])[3]")).click();
-    driver.findElement(By.id("email")).clear();
-    driver.findElement(By.id("email")).sendKeys(inputName);
-    Thread.sleep(1000);
-    driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("pass");
-    Thread.sleep(1000);
-    driver.findElement(By.cssSelector("input.waves-button-input")).click();
-    Thread.sleep(1000);
-        
-    //Assert.assertEquals(driver, baseUrl);
+    driver.findElement(By.cssSelector("div.collapsible-header")).click();
+    driver.findElement(By.xpath("//a[@onclick=\"mojarra.jsfcljs(document.getElementById('j_idt60'),{'j_idt60:j_idt65:0:j_idt101':'j_idt60:j_idt65:0:j_idt101'},'');return false\"]")).click();
+    driver.findElement(By.id("j_idt54:description")).click();
+    driver.findElement(By.id("j_idt54:description")).clear();
+    driver.findElement(By.id("j_idt54:description")).sendKeys("Test login and task creation");
+    driver.findElement(By.xpath("//table[@id='j_idt54:end_table']/tbody/tr[5]/td[7]/div")).click();
+    driver.findElement(By.xpath("(//button[@type='button'])[6]")).click();
+    driver.findElement(By.id("j_idt54:progression")).click();
+    driver.findElement(By.id("j_idt54:progression")).click();
+    driver.findElement(By.id("j_idt54:progression")).clear();
+    driver.findElement(By.id("j_idt54:progression")).sendKeys("10");
+    driver.findElement(By.cssSelector("div.card-content")).click();
+    driver.findElement(By.xpath("//a[@onclick=\"mojarra.jsfcljs(document.getElementById('j_idt54'),{'j_idt54:j_idt77':'j_idt54:j_idt77'},'');return false\"]")).click();
+    driver.findElement(By.cssSelector("i.material-icons.left")).click();
+    driver.findElement(By.xpath("(//input[@value='---'])[1]")).click();
+    new Select(driver.findElement(By.name("j_idt53:idUser"))).selectByVisibleText("user2");
+    driver.findElement(By.xpath("//form[@id='j_idt53']/a/i")).click();
+    driver.findElement(By.linkText("My tasks")).click();
   }
 
   @After
