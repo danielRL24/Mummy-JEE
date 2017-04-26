@@ -107,7 +107,7 @@
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
                                     <h:outputText value=" "/>
-                                    <h:panelGroup rendered="#taskController.checkObservator(userController.loggedUser, item) == true}">
+                                    <h:panelGroup rendered="#{taskController.checkObservator(userController.loggedUser, item) == true}">
                                         <h:commandLink action="#{taskController.prepareEdit2(item)}" value="#{bundle.ListTaskEditLink}" class="waves-effect blue waves-light btn">
                                             <i class="material-icons left">mode_edit</i>
                                         </h:commandLink>
