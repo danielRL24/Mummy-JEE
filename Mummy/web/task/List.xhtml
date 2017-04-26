@@ -29,9 +29,9 @@
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{userController.paginator.model.size() == 0}"/>
                 <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                    
                     <ul class="collapsible" data-collapsible="accordion">   
                         <ui:repeat value="#{userController.paginator.model}" var="item">
+                            <h:panelGroup rendered="#{item != null}">
                             <li>
                                 <!--if the task has parent, display it differently -->
                                 <div class="collapsible-header #{(item.fkParent!=null) ? 'blue-grey lighten-5':''} ">          
@@ -107,7 +107,7 @@
                                         <i class="material-icons left">open_in_new</i>
                                     </h:commandLink>
                                     <h:outputText value=" "/>
-                                    <h:panelGroup rendered="#{taskController.checkObservator(userController.loggedUser, item) == true}">
+                                    <h:panelGroup rendered="#taskController.checkObservator(userController.loggedUser, item) == true}">
                                         <h:commandLink action="#{taskController.prepareEdit2(item)}" value="#{bundle.ListTaskEditLink}" class="waves-effect blue waves-light btn">
                                             <i class="material-icons left">mode_edit</i>
                                         </h:commandLink>
@@ -119,8 +119,9 @@
                                     </h:panelGroup>
                                 </div>                               
                             </li>
+                            </h:panelGroup>
                         </ui:repeat>
-                    </ul>                                    
+                    </ul>                         
                 </h:panelGroup>
                 <br />
 
