@@ -18,7 +18,7 @@
                         <h:inputText id="search" value="#{userController.searchTerm}" title="Search"/>
                     </div>
                     <h:commandLink action='#{userController.searchForTask()}' class="waves-effect waves-light btn">
-                        <i class="material-icons">youtube_searched_for</i>
+                        <i class="material-icons">search</i>
                     </h:commandLink>
                 </div>
             </h:form>
@@ -151,6 +151,13 @@
                 </div>
             </h:form>
             <br/>
+        </ui:define>
+        <ui:define name="script">
+            <script>
+            $( document ).ready(function() {
+                #{userController.init()}
+            });
+            </script>
         </ui:define>
     </ui:composition>
 </html>

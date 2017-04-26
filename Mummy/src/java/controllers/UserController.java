@@ -57,6 +57,7 @@ public class UserController implements Serializable {
             listTaskCreate.addAll(ejbFacade.getAllTasksParticipate(current));
             rPaginator= new RepeatPaginator(listTaskCreate);
         }
+        searchTerm = "";
         
     }
     
