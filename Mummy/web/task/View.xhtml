@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </h:form>
-            <h:panelGroup rendered="#{taskController.checkObservator(userController.loggedUser, item) == true}">
+            <h:panelGroup rendered="#{taskController.checkObservator(userController.loggedUser, taskController.selected) == true}">
                 <h:form>
                     <div class="fixed-action-btn">
                         <a class="btn-floating btn-large red">
