@@ -1,15 +1,15 @@
+package com.example.tests;
+
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class EditParticipant {
-    
+public class EditParticipantTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -17,18 +17,14 @@ public class EditParticipant {
 
   @Before
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "c:/temp/chromedriver.exe");
-    driver = new ChromeDriver();
+    driver = new FirefoxDriver();
     baseUrl = "http://localhost:8080/Mummy/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
   public void testEditParticipant() throws Exception {
-    driver.get(baseUrl);
-    
-    loggingSequence();
-        
+    driver.get(baseUrl + "/Mummy/task/List.xhtml");
     driver.navigate().refresh();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
@@ -59,27 +55,10 @@ public class EditParticipant {
     driver.findElement(By.cssSelector("i.material-icons.left")).click();
     driver.findElement(By.xpath("(//input[@value='---'])[1]")).click();
     new Select(driver.findElement(By.name("j_idt53:idUser"))).selectByVisibleText("user2");
-    Thread.sleep(500);
     driver.findElement(By.xpath("//form[@id='j_idt53']/a/i")).click();
-    Thread.sleep(1000);
     driver.findElement(By.linkText("My tasks")).click();
-    Thread.sleep(500);
   }
 
-  private void loggingSequence() throws Exception{
-    driver.findElement(By.xpath("(//a[contains(text(),'Login')])[3]")).click();
-    driver.findElement(By.id("email")).clear();
-    driver.findElement(By.id("email")).sendKeys("newUser@mail.com");
-    driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("pass");
-    
-
-    driver.findElement(By.cssSelector("input.waves-button-input")).click();   
-    
-    Thread.sleep(500);
-  }
-  
-  
   @After
   public void tearDown() throws Exception {
     driver.quit();

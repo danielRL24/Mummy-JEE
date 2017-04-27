@@ -5,6 +5,8 @@
  */
 package mummytests;
 
+import org.junit.Test;
+
 /**
  *
  * @author lance
@@ -16,6 +18,8 @@ public class MummyTests {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
+    
     
 }
