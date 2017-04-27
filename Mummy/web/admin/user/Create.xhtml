@@ -34,15 +34,9 @@
                                         <h:outputLabel value="#{bundle.CreateUserLabel_pwd}" for="pwd" />
                                         <h:inputSecret id="pwd" value="#{userController.selected.pwd}" title="#{bundle.CreateUserTitle_pwd}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_pwd}"/>   
                                     </div>
-                                    <div class="input-field col s12">
-                                        <h:selectManyMenu id="role" value="#{userController.selected.roleCollection}" title="#{bundle.CreateUserTitle_role}" >
-                                            <f:selectItems value="#{roleController.itemsAvailableSelectMany}" var="role" itemValue="#{role}" itemLabel="#{role.label}"/>
-                                        </h:selectManyMenu>
-                                    <h:outputLabel value="#{bundle.CreateUserLabel_role}" for="role" />
-                                    </div>
                                 </div>
                                 <div class="row">
-                                    <h:commandLink action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" class="waves-effect waves-light btn green">
+                                    <h:commandLink action="#{userController.createFromAdmin}" value="#{bundle.CreateUserSaveLink}" class="waves-effect waves-light btn green">
                                         <i class="material-icons right">send</i>
                                     </h:commandLink>
                                 </div>

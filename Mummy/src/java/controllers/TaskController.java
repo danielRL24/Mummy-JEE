@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -298,12 +299,12 @@ public class TaskController implements Serializable {
     }
     
     public boolean checkObservator (User user, Task task) {
-        if(task.getFkCreator().getId() == user.getId()) {
+        if(Objects.equals(task.getFkCreator().getId(), user.getId())) {
             return true;
         } else {
             for(Participant p : task.getParticipantCollection()) {
-                if (p.getIdUser().getId() == user.getId()) {
-                    if(p.getObservator()) {
+                if (Objects.equals(p.getIdUser().getId(), user.getId())) {
+                    if(!p.getObservator()) {
                         return true;
                     }
                 }

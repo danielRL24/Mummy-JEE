@@ -139,6 +139,21 @@ public class UserController implements Serializable {
         }
     }
     
+    public String createFromAdmin() {
+        try {
+            current.setPwd(JsfUtil.digest("SHA-256", current.getPwd()));         
+            getFacade().create(current);
+            if(current.getRoleCollection().isEmpty()) {
+                ejbFacade.addRoleUser(current, "user");
+            }
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+            return "/admin/user_role/List";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
+        }        
+    }
+    
     public String addRoleToUser() {
         if(tmpRole != null) {
             ejbFacade.addRoleUser(current, tmpRole.getName());          
