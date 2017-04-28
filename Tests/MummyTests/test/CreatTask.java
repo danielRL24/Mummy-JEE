@@ -51,26 +51,40 @@ public class CreatTask {
     Thread.sleep(1000);
     driver.findElement(By.id("j_idt54:description")).sendKeys("JEE tests");
     Thread.sleep(1000);
-    //BUG HERE!!!
-    driver.findElement(By.xpath("//table[@id='j_idt54:begin_table']/tbody/tr[5]/td[4]/div")).click();
+   
+    driver.findElement(By.id("j_idt54:begin")).click();
+    driver.findElement(By.xpath("//table[@id='j_idt54:begin_table']/tbody/tr[5]/td[6]/div")).click();
     Thread.sleep(1000);
     driver.findElement(By.cssSelector("button.btn-flat.picker__close")).click();
     Thread.sleep(1000);
+
+    driver.findElement(By.id("j_idt54:end")).click();
     driver.findElement(By.xpath("//table[@id='j_idt54:end_table']/tbody/tr[5]/td[6]/div")).click();
     Thread.sleep(1000);
+
     driver.findElement(By.xpath("(//button[@type='button'])[6]")).click();
     Thread.sleep(1000);
     driver.findElement(By.id("j_idt54:category")).click();
     driver.findElement(By.id("j_idt54:category")).click();
     driver.findElement(By.id("j_idt54:category")).clear();
     driver.findElement(By.id("j_idt54:category")).sendKeys("test");
-    driver.findElement(By.xpath("(//input[@value='---'])[2]")).click();
+    
+    
+//    driver.findElement(By.xpath("(//input[@value='---'])[2]")).click();
+//    Thread.sleep(1000);
+//    //it bug
+//    new Select(driver.findElement(By.name("j_idt54:fkPriority"))).selectByVisibleText("standard");   
     Thread.sleep(1000);
-    new Select(driver.findElement(By.name("j_idt54:fkPriority"))).selectByVisibleText("standard");
-    driver.findElement(By.xpath("(//input[@value='---'])[3]")).click();
+   // Select select = new Select(driver.findElement(By.xpath("(//input[@value='---'])[2]")));
+    //select.deselectAll();
+    //select.selectByVisibleText("standard");
+
+//    driver.findElement(By.xpath("(//input[@value='---'])[3]")).click();
+//    Thread.sleep(1000);
+//    new Select(driver.findElement(By.name("j_idt54:fkStatus"))).selectByVisibleText("todo");
+    
     Thread.sleep(1000);
-    new Select(driver.findElement(By.name("j_idt54:fkStatus"))).selectByVisibleText("todo");
-    Thread.sleep(1000);
+    
     driver.findElement(By.xpath("//form[@id='j_idt54']/div/div/div/a/i")).click();
     Thread.sleep(1000);
     driver.findElement(By.linkText("Mummy")).click();
