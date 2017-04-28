@@ -70,18 +70,18 @@ public class CreatTask {
     driver.findElement(By.id("j_idt54:category")).sendKeys("test");
     
     
-//    driver.findElement(By.xpath("(//input[@value='---'])[2]")).click();
-//    Thread.sleep(1000);
+    driver.findElement(By.xpath("(//input[@value='---'])[2]")).click();
+    Thread.sleep(1000);
 //    //it bug
-//    new Select(driver.findElement(By.name("j_idt54:fkPriority"))).selectByVisibleText("standard");   
+    new Select(driver.findElement(By.name("j_idt54:fkPriority"))).selectByVisibleText("standard");   
     Thread.sleep(1000);
    // Select select = new Select(driver.findElement(By.xpath("(//input[@value='---'])[2]")));
     //select.deselectAll();
     //select.selectByVisibleText("standard");
 
-//    driver.findElement(By.xpath("(//input[@value='---'])[3]")).click();
-//    Thread.sleep(1000);
-//    new Select(driver.findElement(By.name("j_idt54:fkStatus"))).selectByVisibleText("todo");
+    driver.findElement(By.xpath("(//input[@value='---'])[3]")).click();
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("j_idt54:fkStatus"))).selectByVisibleText("todo");
     
     Thread.sleep(1000);
     
