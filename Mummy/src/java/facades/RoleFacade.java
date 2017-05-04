@@ -13,6 +13,7 @@ public class RoleFacade extends AbstractFacade<Role> {
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

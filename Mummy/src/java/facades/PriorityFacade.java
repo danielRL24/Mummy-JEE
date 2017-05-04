@@ -13,6 +13,7 @@ public class PriorityFacade extends AbstractFacade<Priority> {
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

@@ -13,6 +13,7 @@ public class StatusFacade extends AbstractFacade<Status> {
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

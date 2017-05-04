@@ -88,7 +88,7 @@ public class TaskController implements Serializable {
 
     public String prepareView2(Task task) {
         current = task;
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        //selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
