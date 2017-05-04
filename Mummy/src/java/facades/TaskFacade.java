@@ -13,6 +13,7 @@ public class TaskFacade extends AbstractFacade<Task> {
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

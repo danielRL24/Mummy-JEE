@@ -13,6 +13,7 @@ public class ParticipantFacade extends AbstractFacade<Participant> {
 
     @Override
     protected EntityManager getEntityManager() {
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 
